@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Δράσεις - ΑΜΚΕ ΔΙΕΘΝΗΣ ΔΡΑΣΗ</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <style>
+   
+    .project-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .project-gallery img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .project-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .container h3 {
+        color: #000000;
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #F4D35E;
+  display: inline-block;
+  padding-bottom: 5px;
+    }
+
+    .puzzle-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 10px;
+      padding: 20px;
+    }
+
+   
+    .puzzle-gallery img {
+  width: 100%;
+  height: 200px; /* Σταθερό ύψος */
+  object-fit: cover; /* Γεμίζει το πλαίσιο χωρίς να παραμορφώνει */
+  border-radius: 12px;
+  opacity: 0;
+  transform: scale(0.8) rotateZ(3deg);
+  transition: all 0.5s ease; /* Απλή μετάβαση για την εμφάνιση */
+}
+
+/* Ορισμός του animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotateZ(3deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateZ(0deg);
+  }
+}
+
+/* Ορισμός του animation μόνο για κινητές συσκευές */
+@media (max-width: 768px) {
+  .puzzle-gallery img {
+    height: 250px; /* Μικρότερο ύψος για κινητές συσκευές */
+    animation: fadeIn 0.5s ease-out forwards; /* Εφαρμογή animation */
+  }
+}
+
+/* Εφαρμογή κίνησης για τις μεγάλες οθόνες μέσω του IntersectionObserver */
+.puzzle-gallery img.animate {
+  opacity: 1;
+  transform: scale(1) rotateZ(0deg);
+  transition: all 0.5s ease;
+}
+
+
+
+    .puzzle-gallery img.animate {
+      animation: fadeInPuzzle 1s ease forwards;
+    }
+
+    .puzzle-gallery img.animate:nth-child(1) { animation-delay: 0.2s; }
+    .puzzle-gallery img.animate:nth-child(2) { animation-delay: 0.6s; }
+    .puzzle-gallery img.animate:nth-child(3) { animation-delay: 1s; }
+    .puzzle-gallery img.animate:nth-child(4) { animation-delay: 1.4s; }
+    .puzzle-gallery img.animate:nth-child(5) { animation-delay: 1.8s; }
+    .puzzle-gallery img.animate:nth-child(6) { animation-delay: 2.2s; }
+    .puzzle-gallery img.animate:nth-child(7) { animation-delay: 2.6s; }
+    .puzzle-gallery img.animate:nth-child(8) { animation-delay: 3s; }
+
+
+    @keyframes fadeInPuzzle {
+      to {
+        opacity: 1;
+        transform: scale(1) rotateZ(0deg);
+      }
+    }
+
+    .carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 20px auto 40px; /* Προσθήκη margin-top για απόσταση από το header */
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-track img {
+  width: 100%;
+  flex-shrink: 0;
+  object-fit: cover;
+  border-radius: 12px;
+  height: 500px;
+  transition: transform 0.3s, box-shadow 0.3s ease-in-out;
+}
+
+/* Ενεργοποίηση φωτισμού όταν το καρουζέλ είναι σε hover */
+.carousel-track img:hover {
+  transform: scale(1.05); /* Μικρή αύξηση μεγέθους */
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.8); /* Φωτεινός θρόισμα γύρω από την εικόνα */
+}
+
+/* Προσθήκη φωτισμού στην τρέχουσα εικόνα */
+.carousel-track img.active {
+  filter: brightness(1.2);
+  box-shadow: 0 0 30px rgba(255, 255, 0, 0.9); /* Φωτεινός θρόισμα με περισσότερο φως */
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 2rem;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.carousel-btn.left {
+  left: 10px;
+}
+
+.carousel-btn.right {
+  right: 10px;
+}
+
+    .category-buttons button {
+      padding: 10px 20px;
+      background-color: #0a9396;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .category-buttons button:hover {
+      background-color: #007f7f;
+    }
+
+
+    /* Στυλ για τα modals */
+    .modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Προσθήκη z-index για να έρθει πάνω από όλα τα άλλα στοιχεία */
+}
+
+
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    .close {
+      font-size: 24px;
+      color: #343a40;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    @media (max-width: 768px) {
+  .category-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .category-buttons button {
+    width: 90%;
+    font-size: 18px;
+  }
+
+  .puzzle-gallery {
+    grid-template-columns: 1fr; /* Μία στήλη */
+  }
+}
+
+  </style>
+</head>
+<body>
+
+<!-- Hamburger menu -->
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+    <header>
+        
+        <h1>
+          <span class="title-main">Α.Μ.Κ.Ε. ΔΙΕΘΝΗΣ ΔΡΑΣΗ</span><span class="dash">  - </span><span class="title-sub">INTERACTION</span>
+        </h1>
+        
+        
+            <p>Σύγχρονη Πολιτιστική Παρουσία με Παγκόσμια Προοπτική</p>
+        <nav id="main-nav">
+          <ul>
+            <li><a href="index.html">ΑΡΧΙΚΗ</a></li>
+            <li><a href="about.html">ΣΧΕΤΙΚΑ</a></li>
+            <li><a href="projects.html">ΔΡΑΣΕΙΣ</a></li>
+            <li class="dropdown">
+              <a href="connect.html">ΣΥΜΜΕΤΟΧΗ</a>
+              <div class="dropdown-content">
+                <a href="volunteer.html">Γίνε Εθελοντής</a>
+                <a href="member.html">Γίνε Μέλος</a>
+              </div>
+            </li>
+            <li><a href="contact.html">ΕΠΙΚΟΙΝΩΝΙΑ</a></li>
+          </ul>
+        </nav>
+        
+      </header>
+
+
+  <!-- Carousel πάνω από τις φωτογραφίες -->
+  <div class="carousel-container" id="carousel">
+    <div class="carousel-track">
+      <img src="1.jpg" alt="Καρουζέλ 1">
+      <img src="2.jpg" alt="Καρουζέλ 2">
+      <img src="3.jpg" alt="Καρουζέλ 3">
+    </div>
+  </div>
+
+  <section id="projects">
+    <div class="container">
+      <h3>Δράσεις</h3>
+      <div class="category-buttons">
+        <button onclick="openModal('culture')">Πολιτισμός</button>
+        <button onclick="openModal('tourism')">Τουρισμός</button>
+        <button onclick="openModal('environment')">Περιβάλλον</button>
+        <button onclick="openModal('education')">Εκπαίδευση</button>
+        <button onclick="openModal('technology')">Τεχνολογία</button>
+      </div>
+    
+      <!-- Modals για κάθε κατηγορία -->
+      <div id="cultureModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('culture')">&times;</span>
+          <h3>Δράσεις στον Πολιτισμό</h3>
+          <p>Περιγραφή για δράσεις στον Πολιτισμό...</p>
+        </div>
+      </div>
+    
+      <div id="tourismModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('tourism')">&times;</span>
+          <h3>Δράσεις στον Τουρισμό</h3>
+          <p>Περιγραφή για δράσεις στον Τουρισμό...</p>
+        </div>
+      </div>
+    
+      <div id="environmentModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('environment')">&times;</span>
+          <h3>Δράσεις στο Περιβάλλον</h3>
+          <p>Περιγραφή για δράσεις στο Περιβάλλον...</p>
+        </div>
+      </div>
+    
+      <div id="educationModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('education')">&times;</span>
+          <h3>Δράσεις στην Εκπαίδευση</h3>
+          <p>Περιγραφή για δράσεις στην Εκπαίδευση...</p>
+        </div>
+      </div>
+    
+      <div id="technologyModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal('technology')">&times;</span>
+          <h3>Δράσεις στην Τεχνολογία</h3>
+          <p>Περιγραφή για δράσεις στην Τεχνολογία...</p>
+        </div>
+      </div>
+    
+      <div class="puzzle-gallery">
+        <img src="7.jpg" alt="Φεστιβάλ Σύγχρονης Τέχνης">
+        <img src="2.jpg" alt="Εργαστήρι Θεατρικής Γραφής">
+        <img src="3.jpg" alt="Ανταλλαγή Αθήνα - Βερολίνο">
+        <img src="4.jpg" alt="Ψηφιακή Έκθεση">
+        <img src="5.jpg" alt="Ψηφιακή Έκθεση">
+        <img src="6.jpg" alt="Ψηφιακή Έκθεση">
+        <img src="100.jpg" alt="Ψηφιακή Έκθεση">
+        <img src="15.jpg" alt="Ψηφιακή Έκθεση">
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; Α.Μ.Κ.Ε. ΔΙΕΘΝΗΣ ΔΡΑΣΗ - INTERACTION | All rights reserved</p>
+  </footer>
+  <script src="script.js"></script>
+  <script>
+    
+    let currentSlide = 0;
+    let carouselInterval;
+
+    function moveSlide(direction) {
+      const track = document.querySelector('.carousel-track');
+      const slides = track.querySelectorAll('img');
+      const totalSlides = slides.length;
+
+      currentSlide += direction;
+      if (currentSlide < 0) currentSlide = totalSlides - 1;
+      if (currentSlide >= totalSlides) currentSlide = 0;
+
+      const slideWidth = slides[0].clientWidth;
+      track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+    }
+
+    function startCarousel() {
+      carouselInterval = setInterval(() => moveSlide(1), 4000);
+    }
+
+    function stopCarousel() {
+      clearInterval(carouselInterval);
+    }
+
+    // Ξεκινάει αυτόματα
+    startCarousel();
+
+    // Παύση στο hover
+    const carousel = document.querySelector('#carousel');
+    carousel.addEventListener('mouseenter', stopCarousel);
+    carousel.addEventListener('mouseleave', startCarousel);
+
+  // Ενεργοποίηση εικόνας όταν εμφανίζεται στο scroll
+const puzzleSection = document.querySelector('#projects');
+const puzzleImages = document.querySelectorAll('.puzzle-gallery img');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const img = entry.target;
+      img.classList.add('animate'); // Προσθήκη της κλάσης για animation
+      observer.unobserve(img); // Σταματάμε την παρακολούθηση μόλις ενεργοποιηθεί η κίνηση
+    }
+  });
+}, {
+  threshold: 0.3 // Αν η εικόνα είναι 30% ορατή στην οθόνη, ενεργοποιείται το animation
+});
+
+// Εφαρμογή παρακολούθησης σε όλες τις εικόνες
+puzzleImages.forEach(img => {
+  observer.observe(img);
+});
+
+
+  </script>
+ <script>
+    function openModal(category) {
+      document.getElementById(category + 'Modal').style.display = 'flex';
+    }
+
+    function closeModal(category) {
+      document.getElementById(category + 'Modal').style.display = 'none';
+    }
+
+    // Κλείσιμο του modal αν κάνουμε κλικ εκτός του modal content
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        closeModal(event.target.id.replace('Modal', ''));
+      }
+    }
+  </script>
+  <script>
+  function updateActiveSlide() {
+    const slides = document.querySelectorAll('.carousel-track img');
+    slides.forEach(slide => slide.classList.remove('active'));
+    slides[currentSlide].classList.add('active');
+  }
+  
+  // Ανανέωση κάθε φορά που αλλάζει το slide
+  function moveSlide(direction) {
+    const track = document.querySelector('.carousel-track');
+    const slides = track.querySelectorAll('img');
+    const totalSlides = slides.length;
+  
+    currentSlide += direction;
+    if (currentSlide < 0) currentSlide = totalSlides - 1;
+    if (currentSlide >= totalSlides) currentSlide = 0;
+  
+    const slideWidth = slides[0].clientWidth;
+    track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+  
+    updateActiveSlide();  // Ενημέρωση ενεργής εικόνας
+  }
+  
+</script> 
+<script> 
+    
+</script> 
+</body>
+</html>

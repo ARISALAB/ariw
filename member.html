@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Γίνε Μέλος - ΑΜΚΕ ΔΙΕΘΝΗΣ ΔΡΑΣΗ</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <style>
+        .join-button {
+            background: #F4D35E;
+            color: #2C3E50;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: background 0.3s ease;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .join-button:hover {
+            background: #e9c846;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(44, 62, 80, 0.8);
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            margin: 8% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #2C3E50;
+            cursor: pointer;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        form input,
+        form select,
+        form textarea {
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+            width: 100%;
+            background: #f9f9f9;
+            color: #2C3E50;
+        }
+
+        form button {
+            background: #F4D35E;
+            color: #2C3E50;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        form button:hover {
+            background: #e9c846;
+        }
+
+        ul {
+            padding-left: 0;
+            margin-left: 0;
+            list-style-position: inside;
+        }
+
+        .aos-text ul {
+            padding-left: 0;
+            margin-left: 0;
+            list-style-position: inside;
+        }
+
+        .content-section {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 40px 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .content-section h3 {
+            font-size: 1.8rem;
+            color: #003366;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .content-section p,
+        .content-section ul {
+            font-size: 1.05rem;
+            margin-bottom: 20px;
+        }
+
+        .left-align {
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 0;
+        }
+
+        .content-section ul {
+            padding-left: 0;
+            margin-left: 0;
+            list-style: none;
+        }
+
+        .content-section ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .content-section ul li::before {
+            content: "➤";
+            position: absolute;
+            left: 0;
+            color: #003366;
+            font-size: 0.9rem;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hamburger menu -->
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+    <header>
+        <h1>
+          <span class="title-main">Α.Μ.Κ.Ε. ΔΙΕΘΝΗΣ ΔΡΑΣΗ</span><span class="dash">  - </span><span class="title-sub">INTERACTION</span>
+        </h1>
+        
+        
+            <p>Σύγχρονη Πολιτιστική Παρουσία με Παγκόσμια Προοπτική</p>
+        <nav id="main-nav">
+          <ul>
+            <li><a href="index.html">ΑΡΧΙΚΗ</a></li>
+            <li><a href="about.html">ΣΧΕΤΙΚΑ</a></li>
+            <li><a href="projects.html">ΔΡΑΣΕΙΣ</a></li>
+            <li class="dropdown">
+              <a href="connect.html">ΣΥΜΜΕΤΟΧΗ</a>
+              <div class="dropdown-content">
+                <a href="volunteer.html">Γίνε Εθελοντής</a>
+                <a href="member.html">Γίνε Μέλος</a>
+              </div>
+            </li>
+            <li><a href="contact.html">ΕΠΙΚΟΙΝΩΝΙΑ</a></li>
+          </ul>
+        </nav>
+        
+      </header>
+    <section class="content-section">
+        <h3 data-aos="fade-right">Γίνε Μέλος</h3>
+        <p data-aos="fade-right">
+            Όταν γίνεσαι μέλος της κοινότητας μας, αποκτάς πρόσβαση σε δράσεις, εκδηλώσεις και ευκαιρίες για να αναπτύξεις τις ικανότητές σου και να συνεισφέρεις στην κοινωνία μας.</p>
+        <div class="left-align" data-aos="fade-right">
+            <h4>Πλεονεκτήματα του να Είσαι Μέλος</h4>
+            <ul>
+                <li data-aos="fade-right" data-aos-delay="50"><strong>Πρόσβαση σε Αποκλειστικές Δράσεις και Εκδηλώσεις</strong> – Από εκπαιδευτικά σεμινάρια και πολιτιστικά φεστιβάλ έως διεθνή συνέδρια, η συμμετοχή σου συμβάλλει στην προσωπική σου εξέλιξη.</li>
+                <li data-aos="fade-right" data-aos-delay="100"><strong>Δικτύωση με Κορυφαίους Επαγγελματίες και Δημιουργικούς Ανθρώπους</strong> – Δημιουργία ισχυρών συνεργασιών και ανταλλαγή ιδεών με άτομα που μοιράζονται τις ίδιες αξίες και στόχους.</li>
+                <li data-aos="fade-right" data-aos-delay="150"><strong>Πρόσβαση σε Μοναδικά Εκπαιδευτικά Προγράμματα</strong> – Εξειδικευμένα προγράμματα για την ανάπτυξη ηγετικών ικανοτήτων και την εκμάθηση νέων τεχνολογιών.</li>
+                <li data-aos="fade-right" data-aos-delay="200"><strong>Ευκαιρίες Εθελοντισμού και Κοινωνικής Προσφοράς</strong> – Συμμετοχή σε δράσεις που ενισχύουν την κοινωνική πρόοδο και αλληλεγγύη.</li>
+                <li data-aos="fade-right" data-aos-delay="250"><strong>Δημιουργία και Υποστήριξη Προσωπικών Έργων</strong> – Βοήθεια στην ανάπτυξη και χρηματοδότηση των δικών σου καινοτόμων έργων και πρωτοβουλιών.</li>
+                <li data-aos="fade-right" data-aos-delay="300"><strong>Συμμετοχή σε Διεθνή Δίκτυα</strong> – Συνδεσιμότητα με οργανισμούς και άτομα σε όλο τον κόσμο, για ανταλλαγή και συνεργασία σε παγκόσμιο επίπεδο.</li>
+                <li data-aos="fade-right" data-aos-delay="350"><strong>Προτεραιότητα σε Ευκαιρίες Κατάρτισης και Απασχόλησης</strong> – Πρόσβαση σε θέσεις εργασίας και ευκαιρίες επαγγελματικής ανάπτυξης.</li>
+                <li data-aos="fade-right" data-aos-delay="400"><strong>Αίσθηση Συνοχής και Ανήκειν</strong> – Γίνε μέρος μιας κοινότητας που στηρίζει την κοινωνική αλλαγή και τη συνεχιζόμενη εξέλιξη των μελών της.</li>
+            </ul>
+
+            <button class="join-button" id="openModalBtn">Συμπλήρωσε τη φόρμα συμμετοχής</button>
+            <a href="connect.html" class="join-button">Γύρισε πίσω</a>
+        </div>
+    </section>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Φόρμα Εγγραφής</h3>
+            <form action="https://formsubmit.co/akronservices@mail.com" method="POST" onsubmit="showSuccessMessage(event)">
+                <input type="text" name="Ονοματεπώνυμο" placeholder="Ονοματεπώνυμο" required>
+                <input type="email" name="Email" placeholder="Email" required>
+                <input type="tel" name="Τηλέφωνο" placeholder="Τηλέφωνο" required>
+                <input type="text" name="Τόπος Κατοικίας" placeholder="Τόπος Κατοικίας" required>
+                <input type="text" name="Διεύθυνση" placeholder="Διεύθυνση" required>
+
+                <textarea name="Μήνυμα" placeholder="Γράψε το μήνυμά σου εδώ..." required></textarea>
+
+                <button type="submit">Υποβολή</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Α.Μ.Κ.Ε. ΔΙΕΘΝΗΣ ΔΡΑΣΗ - INTERACTION | All rights reserved</p>
+    </footer>
+
+    <script>
+        const openModalBtn = document.getElementById('openModalBtn');
+        const modal = document.getElementById('modal');
+
+        openModalBtn.addEventListener('click', () => {
+            modal.style.display = 'block';
+        });
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        function showSuccessMessage(event) {
+            event.preventDefault();
+            alert('Η φόρμα υποβλήθηκε με επιτυχία!');
+        }
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 3000,
+            easing: 'ease-in-out',
+            offset: 100,
+            once: true,
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
