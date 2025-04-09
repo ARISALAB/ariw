@@ -324,16 +324,16 @@ footer {
         /* Προβολή hamburger μόνο σε κινητά */
 .hamburger {
   display: none;
-  font-size: 2rem;
+  font-size: 1.5rem; /* Μείωση του μεγέθους γραμματοσειράς */
   color: #F4D35E;
   background: #2C3E50;
-  padding: 10px 15px;
+  padding: 8px 12px; /* Μείωση του padding */
   cursor: pointer;
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 10px; /* Μείωση της απόστασης από την κορυφή */
+  right: 10px; /* Μείωση της απόστασης από τα δεξιά */
   z-index: 1001;
-  border-radius: 5px;
+  border-radius: 4px; /* Μείωση της στρογγυλοποίησης των γωνιών */
 }
 
 /* Mobile menu responsive */
