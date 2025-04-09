@@ -16,9 +16,9 @@
   bottom: 20px;
   right: 20px;
   z-index: 99;
-  width: 40px; /* Μικρότερο πλάτος */
-  height: 40px; /* Μικρότερο ύψος */
-  font-size: 18px; /* Μικρότερη γραμματοσειρά */
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
   background-color: #005f73;
   color: white;
   border: none;
@@ -32,8 +32,8 @@
 }
 
 #topBtn:hover {
-  background-color: #0a9396; /* Λίγο πιο φωτεινό στο hover */
-  transform: scale(1.1); /* Ελαφρύ μεγάλωμα στο hover */
+  background-color: #0a9396;
+  transform: scale(1.1);
 }
 
 #topBtn svg {
@@ -44,14 +44,14 @@
   pointer-events: none;
 }
 
+.culture-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
 
-    .culture-img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-    }
-    .join-button {
+.join-button {
   background: #F4D35E;
   color: #2C3E50;
   padding: 10px 20px;
@@ -78,7 +78,8 @@ form {
   width: 100%;
 }
 
-form input, form select {
+form input,
+form select {
   width: 100%;
   max-width: 500px;
   padding: 12px;
@@ -93,7 +94,8 @@ form select {
   appearance: none;
 }
 
-form input:focus, form select:focus {
+form input:focus,
+form select:focus {
   border-color: #F4D35E;
   outline: none;
 }
@@ -114,8 +116,6 @@ form button:hover {
   background: #e9c846;
 }
 
-
-/* Modal styling */
 .modal {
   display: none;
   position: fixed;
@@ -148,68 +148,33 @@ form button:hover {
   cursor: pointer;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-form input, form select {
-  padding: 12px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 1em;
-  width: 100%;
-  background: #f9f9f9;
-  color: #2C3E50;
-}
-
-form button {
-  background: #F4D35E;
-  color: #2C3E50;
-  padding: 10px;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 1em;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-form button:hover {
-  background: #e9c846;
-}
-
-
 .overlay-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: .15em solid orange;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 0.15em solid orange;
 }
 
-/* Προβολή hamburger μόνο σε κινητά */
 .hamburger {
   display: none;
-  font-size: 1.5rem; /* Μείωση του μεγέθους γραμματοσειράς */
+  font-size: 2rem;
   color: #F4D35E;
   background: #2C3E50;
-  padding: 8px 12px; /* Μείωση του padding */
+  padding: 10px 15px;
   cursor: pointer;
   position: absolute;
-  top: 10px; /* Μείωση της απόστασης από την κορυφή */
-  right: 10px; /* Μείωση της απόστασης από τα δεξιά */
+  top: 15px;
+  right: 15px;
   z-index: 1001;
-  border-radius: 4px; /* Μείωση της στρογγυλοποίησης των γωνιών */
+  border-radius: 5px;
 }
 
-/* Mobile menu responsive */
 @media (max-width: 768px) {
   nav#main-nav {
     display: none;
@@ -252,7 +217,7 @@ form button:hover {
   }
 
   .overlay-text {
-    font-size: 18px;
+    font-size: 18px; /* Μειώνει το μέγεθος γραμματοσειράς για κινητά */
   }
 
   header h1 {
@@ -266,24 +231,26 @@ form button:hover {
   }
 }
 
-
 @media (max-width: 600px) {
   .title-sub {
     display: block;
     margin-left: 0;
   }
-}
-@media (max-width: 600px) {
+
   .dash {
     display: none;
   }
 
-  .title-sub {
-    display: block;
-    margin-left: 0;
+  form input,
+  form select,
+  form button {
+    padding: 10px; /* Μικρότερο padding σε μικρότερες οθόνες */
+  }
+
+  .modal-content {
+    padding: 20px; /* Μικρότερο padding στο modal σε μικρότερες οθόνες */
   }
 }
-
   </style>
 </head>
 <body>
@@ -320,9 +287,8 @@ form button:hover {
 
   <div class="image-container">
     <img class="culture-img" src="1.JPG" alt="Πολιτιστική εικόνα">
-    <div class="overlay-text" id="typing-text"></div>
-</div>
-
+    <div class="overlay-text" id="typing-text">Προβάλλουμε τον Ελληνικό Πολιτισμό Διεθνώς</div>
+  </div>
 
   <section id="about" class="content-section">
     <h3>Σχετικά με εμάς</h3>
@@ -497,34 +463,11 @@ window.onclick = function(event) {
 
 
 <script>
-  const text = "Προβάλλουμε τον Ελληνικό Πολιτισμό Διεθνώς";
-  const typingText = document.getElementById('typing-text');
-  
-  function typeWriter() {
-      typingText.innerHTML = ''; // Καθαρίζει το υπάρχον κείμενο
-      let index = 0;
-      function typeChar() {
-          if (index < text.length) {
-              typingText.innerHTML += text.charAt(index);
-              index++;
-              setTimeout(typeChar, 100);
-          } else {
-              typingText.style.borderRight = 'none'; // Αφαιρεί τον δρομέα στο τέλος
-          }
-      }
-      typingText.style.borderRight = '.15em solid orange'; // Επαναφέρει τον δρομέα
-      typeChar();
-  }
-  
-  const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-          if (entry.isIntersecting) {
-              typeWriter();
-          }
-      });
-  });
-  
-  observer.observe(typingText);
+const text = "Προβάλλουμε τον Ελληνικό Πολιτισμό Διεθνώς";
+const typingText = document.getElementById('typing-text');
+
+typingText.innerHTML = text; // Εμφανίζει το κείμενο απευθείας
+typingText.style.borderRight = 'none'; // Αφαιρεί τον δρομέα
   </script>
   <script>
     function toggleMenu() {
