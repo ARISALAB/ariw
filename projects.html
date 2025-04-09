@@ -141,14 +141,25 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(5, 0, 0, 1);
   color: white;
   border: none;
-  font-size: 2rem;
-  padding: 10px;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
   cursor: pointer;
   z-index: 1;
   border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.carousel-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-50%) scale(1.1);
 }
 
 .carousel-btn.left {
@@ -158,6 +169,7 @@
 .carousel-btn.right {
   right: 10px;
 }
+
 
     .category-buttons button {
       padding: 10px 20px;
@@ -220,8 +232,20 @@
     font-size: 18px;
   }
 
+
+}
+@media (max-width: 768px) {
   .puzzle-gallery {
-    grid-template-columns: 1fr; /* Μία στήλη */
+    display: block; /* Απενεργοποίηση του grid σε κινητά */
+    padding: 0;
+  }
+
+  .puzzle-gallery img {
+    width: 80vw; /* Πλάτος όσο και η οθόνη */
+    height: auto; /* Διατηρεί αναλογία εικόνας */
+    border-radius: 10px; /* Αν δε θέλεις καμπύλες */
+    margin: 10px;
+    display: block;
   }
 }
 
@@ -265,6 +289,10 @@
       <img src="2.jpg" alt="Καρουζέλ 2">
       <img src="3.jpg" alt="Καρουζέλ 3">
     </div>
+    <button class="carousel-btn left" onclick="moveSlide(-1)">❮</button>
+
+    <button class="carousel-btn right" onclick="moveSlide(1)">❯</button>
+
   </div>
 
   <section id="projects">
