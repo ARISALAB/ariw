@@ -65,20 +65,8 @@
   }
 }
 
-/* Ορισμός του animation μόνο για κινητές συσκευές */
-@media (max-width: 768px) {
-  .puzzle-gallery img {
-    height: 250px; /* Μικρότερο ύψος για κινητές συσκευές */
-    animation: fadeIn 0.5s ease-out forwards; /* Εφαρμογή animation */
-  }
-}
 
-/* Εφαρμογή κίνησης για τις μεγάλες οθόνες μέσω του IntersectionObserver */
-.puzzle-gallery img.animate {
-  opacity: 1;
-  transform: scale(1) rotateZ(0deg);
-  transition: all 0.5s ease;
-}
+
 
 
 
@@ -241,12 +229,14 @@
   }
 
   .puzzle-gallery img {
-    width: 80vw; /* Πλάτος όσο και η οθόνη */
-    height: auto; /* Διατηρεί αναλογία εικόνας */
-    border-radius: 10px; /* Αν δε θέλεις καμπύλες */
-    margin: 10px;
-    display: block;
-  }
+  width: 100vw;
+  max-width: 390px;
+  margin: 10px;
+
+  border-radius: 10px;
+  height: auto;
+  display: block;
+}
 }
 
   </style>
