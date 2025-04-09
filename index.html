@@ -219,8 +219,11 @@ form button:hover {
 
   .overlay-text {
     font-size: 15px; /* Μειώνει το μέγεθος γραμματοσειράς για κινητά */
-    width: 90%;
+    max-width: 90%; /* Περιορίζει το πλάτος του κειμένου */
+    overflow-wrap: break-word; /* Επιτρέπει το "σπάσιμο" των λέξεων */
+    padding: 10px; /* Προσθέτει padding για καλύτερη εμφάνιση */
   }
+}
 
   header h1 {
     font-size: 1.2em;
