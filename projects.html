@@ -238,7 +238,38 @@
   display: block;
 }
 }
+@media (max-width: 600px) {
+  .category-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+  }
 
+  .category-buttons button {
+    width: 90%;
+    font-size: 18px;
+  }
+
+
+}
+@media (max-width: 600px) {
+  .puzzle-gallery {
+    display: block; /* Απενεργοποίηση του grid σε κινητά */
+    padding: 0;
+  }
+
+  .puzzle-gallery img {
+  width: 100vw;
+  max-width: 390px;
+  margin: 10px;
+
+  border-radius: 10px;
+  height: auto;
+  display: block;
+}
+}
   </style>
 </head>
 <body>
