@@ -303,6 +303,24 @@
         .container h3 {
     color: #ffffff; /* Άσπρο χρώμα για το "Δράσεις" */
 }
+    @media (max-width: 768px) {
+  .project-gallery {
+    display: flex;
+    flex-direction: column; /* Εμφάνιση των εικόνων σε στήλη */
+    gap: 0; /* Αφαίρεση του κενού μεταξύ των εικόνων */
+  }
+
+  .project-gallery img {
+    width: 100%; /* Κάλυψη όλου του διαθέσιμου πλάτους */
+    height: auto; /* Διατήρηση της αναλογίας διαστάσεων */
+    object-fit: cover; /* Οι εικόνες θα καλύπτουν όλο το container, κόβοντας αν χρειαστεί */
+    margin-bottom: 10px; /* Αφαίρεση περιθωρίου κάτω από τις εικόνες */
+  }
+
+  #projects .container {
+    padding: 0; /* Αφαίρεση padding από το container για να φτάσουν οι εικόνες στις άκρες */
+  }
+}
   </style>
 </head>
 <body>
