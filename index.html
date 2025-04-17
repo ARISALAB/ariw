@@ -161,26 +161,27 @@ form button:hover {
   border-right: 0.15em solid orange;
 }
 
-    .hamburger {
-          display: none;
-          font-size: 1.5rem; /* Μείωση του μεγέθους γραμματοσειράς */
-          color: #F4D35E;
-          background: #2C3E50;
-          padding: 8px 12px; /* Μείωση του padding */
-          cursor: pointer;
-          position: absolute;
-          top: 10px; /* Μείωση της απόστασης από την κορυφή */
-          right: 10px; /* Μείωση της απόστασης από τα δεξιά */
-          z-index: 1001;
-          border-radius: 4px; /* Μείωση της στρογγυλοποίησης των γωνιών */
-        }
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  color: #F4D35E;
+  background: #2C3E50;
+  padding: 10px 15px;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1001;
+  border-radius: 5px;
+}
 
 @media (max-width: 768px) {
   .culture-img {
-    height: 60vh; /* 60% του ύψους της οθόνης */
+    height: 100vh; /* 60% του ύψους της οθόνης */
     object-fit: cover; /* Καλύπτει ολόκληρο το container */
   }
 }
+
 @media (max-width: 768px) {
   nav#main-nav {
     display: none;
@@ -208,10 +209,12 @@ form button:hover {
   }
 
   .project-gallery {
-    display: flex;
-    flex-direction: column;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding: 0;
     gap: 10px;
   }
+}
 
   .project-gallery img {
     width: 100%;
@@ -223,7 +226,7 @@ form button:hover {
   }
 
   .overlay-text {
-    font-size: 18px;
+    font-size: 18px; /* Μειώνει το μέγεθος γραμματοσειράς για κινητά */
   }
 
   header h1 {
@@ -235,7 +238,8 @@ form button:hover {
     font-size: 1em;
     padding: 0 10px;
   }
-}
+  
+
 
 @media (max-width: 600px) {
   .title-sub {
@@ -252,13 +256,12 @@ form button:hover {
   form button {
     padding: 10px; /* Μικρότερο padding σε μικρότερες οθόνες */
   }
- .overlay-text {
-    font-size: 16px;
-  }
+
   .modal-content {
     padding: 20px; /* Μικρότερο padding στο modal σε μικρότερες οθόνες */
   }
 }
+
   </style>
 </head>
 <body>
@@ -308,14 +311,16 @@ form button:hover {
     </p>
   </section>
 
- <section id="projects">
-  <div class="container">
-    <h3 style="color: white;     
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #F4D35E;
-    display: inline-block;
-    padding-bottom: 5px;">Δράσεις</h3>
+  <section id="projects">
+    <div class="container">
+      <h3 style="color: white;     
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #F4D35E;
+        display: inline-block;
+        padding-bottom: 5px;">Δράσεις</h3>
+    </div>
+    
     <div class="project-gallery">
       <img src="7.jpg" alt="Φεστιβάλ Σύγχρονης Τέχνης">
       <img src="2.jpg" alt="Εργαστήρι Θεατρικής Γραφής">
@@ -324,9 +329,8 @@ form button:hover {
       <img src="5.jpg" alt="Ψηφιακή Έκθεση">
       <img src="6.jpg" alt="Ψηφιακή Έκθεση">
     </div>
-  </div>
-</section>
-
+  </section>
+  
 <section id="join-us" class="content-section1">
   <div class="content-wrapper">
     <h3>Δήλωσε Συμμετοχή</h3>
