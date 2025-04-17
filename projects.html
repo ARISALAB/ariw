@@ -3,596 +3,490 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Δράσεις - ΑΜΚΕ ΔΙΕΘΝΗΣ ΔΡΑΣΗ</title>
+  <title>ΑΜΚΕ ΔΙΕΘΝΗΣ ΔΡΑΣΗ</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
   <style>
-   
-  .project-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
 
-        .project-gallery img {
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
-        }
 
-        .project-gallery img:hover {
-            transform: scale(1.05);
-        }
 
-        .container h3 {
-            color: #000000;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #F4D35E;
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        .puzzle-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 10px;
-    padding: 20px;
+#topBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  background-color: #005f73;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding: 0;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.puzzle-gallery img {
-    width: 100%;
-    height: 200px; /* Ορίστε το επιθυμητό σταθερό ύψος (π.χ., 200px) */
-    object-fit: cover; /* Καλύπτει το πλαίσιο διατηρώντας τις αναλογίες */
-    border-radius: 12px;
-    opacity: 0;
-    transform: scale(0.8) rotateZ(3deg);
-    transition: all 0.5s ease; /* Απλή μετάβαση για την εμφάνιση */
+#topBtn:hover {
+  background-color: #0a9396;
+  transform: scale(1.1);
+}
+
+#topBtn svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+
+.culture-img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.join-button {
+  background: #F4D35E;
+  color: #2C3E50;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1em;
+  text-decoration: none;
+  margin-top: 20px;
+  display: inline-block;
+  transition: background 0.3s ease;
+}
+
+.join-button:hover {
+  background: #e9c846;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+  width: 100%;
+}
+
+form input,
+form select {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  background: #f9f9f9;
+  color: #2C3E50;
+}
+
+form select {
+  appearance: none;
+}
+
+form input:focus,
+form select:focus {
+  border-color: #F4D35E;
+  outline: none;
+}
+
+form button {
+  background: #F4D35E;
+  color: #2C3E50;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+form button:hover {
+  background: #e9c846;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(44, 62, 80, 0.8);
+}
+
+.modal-content {
+  background-color: #ffffff;
+  margin: 8% auto;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #2C3E50;
+  cursor: pointer;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 0.15em solid orange;
+}
+
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  color: #F4D35E;
+  background: #2C3E50;
+  padding: 10px 15px;
+  cursor: pointer;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1001;
+  border-radius: 5px;
 }
 
 @media (max-width: 768px) {
-    .puzzle-gallery {
-        display: block; /* Απενεργοποίηση του grid σε κινητά */
-        padding: 0;
-    }
-
-    .puzzle-gallery img {
-        width: 100vw;
-        max-width: none; /* Αφαίρεση του max-width για να καταλαμβάνει όλο το πλάτος */
-        margin: 10px 0; /* Αλλαγή σε 0 για να μην υπάρχουν περιθώρια δεξιά και αριστερά */
-        height: auto; /* Επαναφορά του ύψους σε auto για κινητά */
-        border-radius: 10px;
-        display: block;
-    }
-}
-@media (max-width: 600px) {
-    .puzzle-gallery {
-        display: block; /* Απενεργοποίηση του grid σε κινητά */
-        padding: 0;
-    }
-
-    .puzzle-gallery img {
-        width: 100vw;
-        max-width: none; /* Αφαίρεση του max-width για να καταλαμβάνει όλο το πλάτος */
-        margin: 10px 0; /* Αλλαγή σε 0 για να μην υπάρχουν περιθώρια δεξιά και αριστερά */
-        height: auto; /* Επαναφορά του ύψους σε auto για κινητά */
-        border-radius: 10px;
-        display: block;
-    }
-}
-
-        /* Ορισμός του animation */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.8) rotateZ(3deg);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) rotateZ(0deg);
-            }
-        }
-
-
-
-
-
-
-        .puzzle-gallery img.animate {
-            animation: fadeInPuzzle 1s ease forwards;
-        }
-
-        .puzzle-gallery img.animate:nth-child(1) { animation-delay: 0.2s; }
-        .puzzle-gallery img.animate:nth-child(2) { animation-delay: 0.6s; }
-        .puzzle-gallery img.animate:nth-child(3) { animation-delay: 1s; }
-        .puzzle-gallery img.animate:nth-child(4) { animation-delay: 1.4s; }
-        .puzzle-gallery img.animate:nth-child(5) { animation-delay: 1.8s; }
-        .puzzle-gallery img.animate:nth-child(6) { animation-delay: 2.2s; }
-        .puzzle-gallery img.animate:nth-child(7) { animation-delay: 2.6s; }
-        .puzzle-gallery img.animate:nth-child(8) { animation-delay: 3s; }
-
-
-        @keyframes fadeInPuzzle {
-            to {
-                opacity: 1;
-                transform: scale(1) rotateZ(0deg);
-            }
-        }
-
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            max-width: 1000px;
-            margin: 20px auto 40px; /* Προσθήκη margin-top για απόσταση από το header */
-            overflow: hidden;
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
-
-        .carousel-track img {
-            width: 100%;
-            flex-shrink: 0;
-            object-fit: cover;
-            border-radius: 12px;
-            height: 500px;
-            transition: transform 0.3s, box-shadow 0.3s ease-in-out;
-        }
-
-        /* Ενεργοποίηση φωτισμού όταν το καρουζέλ είναι σε hover */
-        .carousel-track img:hover {
-            transform: scale(1.05); /* Μικρή αύξηση μεγέθους */
-            box-shadow: 0 0 20px rgba(255, 255, 0, 0.8); /* Φωτεινός θρόισμα γύρω από την εικόνα */
-        }
-
-        /* Προσθήκη φωτισμού στην τρέχουσα εικόνα */
-        .carousel-track img.active {
-            filter: brightness(1.2);
-            box-shadow: 0 0 30px rgba(255, 255, 0, 0.9); /* Φωτεινός θρόισμα με περισσότερο φως */
-        }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(5, 0, 0, 1);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            z-index: 1;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s, transform 0.3s;
-        }
-
-        .carousel-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .carousel-btn.left {
-            left: 10px;
-        }
-
-        .carousel-btn.right {
-            right: 10px;
-        }
-
-
-        .category-buttons button {
-            padding: 10px 20px;
-            background-color: #0a9396;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .category-buttons button:hover {
-            background-color: #007f7f;
-        }
-
-
-        /* Στυλ για τα modals */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .modal-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 600px;
-            position: relative; /* Προσθήκη για το απόλυτα τοποθετημένο "X" */
-        }
-
-        .close {
-            font-size: 24px;
-            color: #343a40;
-            cursor: pointer;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-        }
-        @media (max-width: 768px) {
-            .category-buttons {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-                align-items: center;
-                margin-bottom: 20px;
-            }
-
-            .category-buttons button {
-                width: 90%;
-                font-size: 18px;
-            }
-
-
-        }
-        @media (max-width: 768px) {
-            .puzzle-gallery {
-                display: block; /* Απενεργοποίηση του grid σε κινητά */
-                padding: 0;
-            }
-
-            .puzzle-gallery img {
-                width: 100vw;
-                max-width: none; /* Αφαίρεση του max-width για να καταλαμβάνει όλο το πλάτος */
-                margin: 10px 0; /* Αλλαγή σε 0 για να μην υπάρχουν περιθώρια δεξιά και αριστερά */
-
-                border-radius: 10px;
-
-                display: block;
-            }
-        }
-        @media (max-width: 600px) {
-            .category-buttons {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-                align-items: center;
-                margin-bottom: 20px;
-            }
-
-            .category-buttons button {
-                width: 90%;
-                font-size: 18px;
-            }
-
-
-        }
-        @media (max-width: 600px) {
-            .puzzle-gallery {
-                display: block; /* Απενεργοποίηση του grid σε κινητά */
-                padding: 0;
-            }
-
-            .puzzle-gallery img {
-                width: 100vw;
-                max-width: none; /* Αφαίρεση του max-width για να καταλαμβάνει όλο το πλάτος */
-                margin: 10px 0; /* Αλλαγή σε 0 για να μην υπάρχουν περιθώρια δεξιά και αριστερά */
-
-                border-radius: 10px;
-                height: auto;
-                display: block;
-            }
-        }
-        .container h3 {
-    color: #ffffff; /* Άσπρο χρώμα για το "Δράσεις" */
-}
-    @media (max-width: 768px) {
-  .project-gallery {
-    display: flex;
-    flex-direction: column; /* Εμφάνιση των εικόνων σε στήλη */
-    gap: 0; /* Αφαίρεση του κενού μεταξύ των εικόνων */
+  .culture-img {
+    height: 100vh; /* 60% του ύψους της οθόνης */
+    object-fit: cover; /* Καλύπτει ολόκληρο το container */
   }
+}
+
+@media (max-width: 768px) {
+  nav#main-nav {
+    display: none;
+    flex-direction: column;
+    background-color: #2C3E50;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  nav#main-nav ul {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  nav#main-nav li {
+    padding: 10px;
+    border-bottom: 1px solid #F4D35E;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .project-gallery {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    padding: 0;
+    gap: 10px;
+  }
+}
 
   .project-gallery img {
-    width: 100%; /* Κάλυψη όλου του διαθέσιμου πλάτους */
-    height: auto; /* Διατήρηση της αναλογίας διαστάσεων */
-    object-fit: cover; /* Οι εικόνες θα καλύπτουν όλο το container, κόβοντας αν χρειαστεί */
-    margin-bottom: 10px; /* Αφαίρεση περιθωρίου κάτω από τις εικόνες */
+    width: 100%;
+    height: auto;
   }
 
-  #projects .container {
-    padding: 0; /* Αφαίρεση padding από το container για να φτάσουν οι εικόνες στις άκρες */
+  .content-wrapper {
+    padding: 10px;
+  }
+
+  .overlay-text {
+    font-size: 18px; /* Μειώνει το μέγεθος γραμματοσειράς για κινητά */
+  }
+
+  header h1 {
+    font-size: 1.2em;
+    padding: 10px;
+  }
+
+  header p {
+    font-size: 1em;
+    padding: 0 10px;
+  }
+  
+}
+
+@media (max-width: 600px) {
+  .title-sub {
+    display: block;
+    margin-left: 0;
+  }
+
+  .dash {
+    display: none;
+  }
+
+  form input,
+  form select,
+  form button {
+    padding: 10px; /* Μικρότερο padding σε μικρότερες οθόνες */
+  }
+
+  .modal-content {
+    padding: 20px; /* Μικρότερο padding στο modal σε μικρότερες οθόνες */
   }
 }
+
   </style>
 </head>
 <body>
 
+
 <!-- Hamburger menu -->
 <div class="hamburger" onclick="toggleMenu()">☰</div>
-    <header>
-        
-        <h1>
-          <span class="title-main">Α.Μ.Κ.Ε. ΔΙΕΘΝΗΣ ΔΡΑΣΗ</span><span class="dash">  - </span><span class="title-sub">INTERACTION</span>
-        </h1>
-        
-        
-            <p>Σύγχρονη Πολιτιστική Παρουσία με Παγκόσμια Προοπτική</p>
-        <nav id="main-nav">
-          <ul>
-            <li><a href="index.html">ΑΡΧΙΚΗ</a></li>
-            <li><a href="about.html">ΣΧΕΤΙΚΑ</a></li>
-            <li><a href="projects.html">ΔΡΑΣΕΙΣ</a></li>
-            <li class="dropdown">
-              <a href="connect.html">ΣΥΜΜΕΤΟΧΗ</a>
-              <div class="dropdown-content">
-                <a href="volunteer.html">Γίνε Εθελοντής</a>
-                <a href="member.html">Γίνε Μέλος</a>
-              </div>
-            </li>
-            <li><a href="contact.html">ΕΠΙΚΟΙΝΩΝΙΑ</a></li>
-          </ul>
-        </nav>
-        
-      </header>
 
 
-  <!-- Carousel πάνω από τις φωτογραφίες -->
-  <div class="carousel-container" id="carousel">
-    <div class="carousel-track">
-      <img src="1.jpg" alt="Καρουζέλ 1">
-      <img src="2.jpg" alt="Καρουζέλ 2">
-      <img src="3.jpg" alt="Καρουζέλ 3">
-    </div>
-    <button class="carousel-btn left" onclick="moveSlide(-1)">❮</button>
+  <header>
+    <h1>
+      <span class="title-main">Α.Μ.Κ.Ε. ΔΙΕΘΝΗΣ ΔΡΑΣΗ</span><span class="dash">  - </span><span class="title-sub">INTERACTION</span>
+    </h1>
+    
+    
+        <p>Σύγχρονη Πολιτιστική Παρουσία με Παγκόσμια Προοπτική</p>
+    <nav id="main-nav">
+      <ul>
+        <li><a href="index.html">ΑΡΧΙΚΗ</a></li>
+        <li><a href="about.html">ΣΧΕΤΙΚΑ</a></li>
+        <li><a href="projects.html">ΔΡΑΣΕΙΣ</a></li>
+        <li class="dropdown">
+          <a href="connect.html">ΣΥΜΜΕΤΟΧΗ</a>
+          <div class="dropdown-content">
+            <a href="volunteer.html">Γίνε Εθελοντής</a>
+            <a href="member.html">Γίνε Μέλος</a>
+          </div>
+        </li>
+        <li><a href="contact.html">ΕΠΙΚΟΙΝΩΝΙΑ</a></li>
+      </ul>
+    </nav>
+    
+  </header>
 
-    <button class="carousel-btn right" onclick="moveSlide(1)">❯</button>
-
+  <div class="image-container">
+    <img class="culture-img" src="1.JPG" alt="Πολιτιστική εικόνα">
+    <div class="overlay-text" id="typing-text">Προβάλλουμε τον Ελληνικό Πολιτισμό Διεθνώς</div>
   </div>
 
- 
-  <div class="news-ticker-banner">
-    <div class="ticker-wrap">
-        <div class="ticker-item">Ενίσχυση και προβολή του σύγχρονου ελληνικού πολιτισμού Παγκοσμίως  </div>
-        <div class="ticker-item">Σύνδεση του τουρισμού με την προβολή του σύγχρονου πολιτισμού</div>
-        <div class="ticker-item">Προβολή μιας σύγχρονης "πολιτιστικής" διάστασης της περιβαλλοντικής συνείδησης</div>
-        <div class="ticker-item">Σύνδεση της εκπαίδευσης με την προβολή του σύγχρονου ελληνικού πνεύματος</div>
-        <div class="ticker-item">Ένταξη της τεχνολογίας στην ευρύτερη έννοια του σύγχρονου πολιτισμού</div>
-    </div>
-</div>
+  <section id="about" class="content-section">
+    <h3>Σχετικά με εμάς</h3>
+    <p>
+      Η <strong>Α.Μ.Κ.Ε. ΔΙΕΘΝΗΣ ΔΡΑΣΗ - INTERACTION</strong> είναι μια Αστική Μη Κερδοσκοπική Εταιρεία που δραστηριοποιείται
+      στον τομέα του πολιτισμού, της τέχνης και της δημιουργικότητας.
+      Σκοπός μας είναι η ενίσχυση της προσφοράς της Ελλάδας και των σύγχρονων Ελλήνων καλλιτεχνών και δημιουργών
+      στην παγκόσμια πολιτιστική αρένα μέσα από συνεργασίες, φεστιβάλ, εκπαιδευτικά προγράμματα και καλλιτεχνικές παραγωγές.
+    </p>
+  </section>
 
-<section id="projects">
+  <section id="projects">
     <div class="container">
-        <h3>Δράσεις</h3>
-        <div class="category-buttons">
-            <button onclick="window.location.href='projects.html'">Πολιτισμός</button>
-            <button onclick="window.location.href='projects.html'">Τουρισμός</button>
-            <button onclick="window.location.href='projects.html'">Περιβάλλον</button>
-            <button onclick="window.location.href='projects.html'">Εκπαίδευση</button>
-            <button onclick="window.location.href='projects.html'">Τεχνολογία</button>
-        </div>
-        </div>
-</section>
-
-<style>
-.news-ticker-banner {
-background-color: #2C3E50; /* Σκούρο μπλε */
-color: white;
-padding: 8px 0; /* Μείωση του vertical padding */
-overflow: hidden;
-white-space: nowrap;
-border-bottom: 2px solid #FFD700; /* Χρυσή γραμμή */
-}
-
-.ticker-wrap {
-display: inline-block;
-padding-left: 100%; /* Ξεκινάει εκτός οθόνης */
-animation: ticker 25s linear infinite; /* Προσαρμόστε την ταχύτητα εδώ */
-}
-
-.ticker-item {
-display: inline-block;
-padding: 0 0; /* Αφαιρούμε το οριζόντιο padding από το ticker-item */
-font-size: 1.1em;
-margin-right: 10px; /* Προσθέτουμε περιθώριο δεξιά για την απόσταση πριν την κάθετο */
-}
-
-.ticker-item::after {
-content: " | "; /* Προσθέτει την κάθετο μετά από κάθε στοιχείο */
-padding-left: 10px; /* Προσθέτει την απόσταση μετά την κάθετο */
-}
-
-.ticker-item:last-child::after {
-content: ""; /* Αφαιρεί την κάθετο μετά το τελευταίο στοιχείο */
-}
-
-@keyframes ticker {
-0% { transform: translateX(0); }
-100% { transform: translateX(-100%); }
-}
-</style>
-
-<script>
-    function openModal(category) {
-        console.log("Άνοιξε modal για: " + category);
-    }
-</script>
+      <h3 style="color: white;     
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #F4D35E;
+        display: inline-block;
+        padding-bottom: 5px;">Δράσεις</h3>
+    </div>
     
-      <!-- Modals για κάθε κατηγορία -->
-      <div id="cultureModal" class="modal">
-        <div class="modal-content">
-          <span class="close" onclick="closeModal('culture')">&times;</span>
-          <h3>Δράσεις στον Πολιτισμό</h3>
-          <p>Περιγραφή για δράσεις στον Πολιτισμό...</p>
-        </div>
-      </div>
-    
-      <div id="tourismModal" class="modal">
-        <div class="modal-content">
-          <span class="close" onclick="closeModal('tourism')">&times;</span>
-          <h3>Δράσεις στον Τουρισμό</h3>
-          <p>Περιγραφή για δράσεις στον Τουρισμό...</p>
-        </div>
-      </div>
-    
-      <div id="environmentModal" class="modal">
-        <div class="modal-content">
-          <span class="close" onclick="closeModal('environment')">&times;</span>
-          <h3>Δράσεις στο Περιβάλλον</h3>
-          <p>Περιγραφή για δράσεις στο Περιβάλλον...</p>
-        </div>
-      </div>
-    
-      <div id="educationModal" class="modal">
-        <div class="modal-content">
-          <span class="close" onclick="closeModal('education')">&times;</span>
-          <h3>Δράσεις στην Εκπαίδευση</h3>
-          <p>Περιγραφή για δράσεις στην Εκπαίδευση...</p>
-        </div>
-      </div>
-    
-      <div id="technologyModal" class="modal">
-        <div class="modal-content">
-          <span class="close" onclick="closeModal('technology')">&times;</span>
-          <h3>Δράσεις στην Τεχνολογία</h3>
-          <p>Περιγραφή για δράσεις στην Τεχνολογία...</p>
-        </div>
-      </div>
-    
-      <div class="puzzle-gallery">
-        <img src="7.jpg" alt="Φεστιβάλ Σύγχρονης Τέχνης">
-        <img src="2.jpg" alt="Εργαστήρι Θεατρικής Γραφής">
-        <img src="3.jpg" alt="Ανταλλαγή Αθήνα - Βερολίνο">
-        <img src="4.jpg" alt="Ψηφιακή Έκθεση">
-        <img src="5.jpg" alt="Ψηφιακή Έκθεση">
-        <img src="6.jpg" alt="Ψηφιακή Έκθεση">
-        <img src="100.jpg" alt="Ψηφιακή Έκθεση">
-        <img src="15.jpg" alt="Ψηφιακή Έκθεση">
-
-      </div>
+    <div class="project-gallery">
+      <img src="7.jpg" alt="Φεστιβάλ Σύγχρονης Τέχνης">
+      <img src="2.jpg" alt="Εργαστήρι Θεατρικής Γραφής">
+      <img src="3.jpg" alt="Ανταλλαγή Αθήνα - Βερολίνο">
+      <img src="4.jpg" alt="Ψηφιακή Έκθεση">
+      <img src="5.jpg" alt="Ψηφιακή Έκθεση">
+      <img src="6.jpg" alt="Ψηφιακή Έκθεση">
     </div>
   </section>
+  
+<section id="join-us" class="content-section1">
+  <div class="content-wrapper">
+    <h3>Δήλωσε Συμμετοχή</h3>
+    <p><strong>Γίνε μέλος:</strong> Η συμμετοχή σου ως μέλος της ομάδας μας δεν είναι απλώς μια εγγραφή — είναι μια πράξη δέσμευσης προς έναν καλύτερο κόσμο. Ως μέλος, έχεις τη δυνατότητα να συμμετέχεις ενεργά στις δράσεις μας και να γίνεις μέρος μιας κοινότητας με κοινές αξίες.</p>
+    <p><strong>Γίνε εθελοντής:</strong> Αν θέλεις να προσφέρεις χρόνο, δημιουργικότητα και ενέργεια, μπορείς να συμβάλεις στις δράσεις μας και να αποκτήσεις πολύτιμες εμπειρίες μέσα από την προσφορά.</p>
+    
+    <!-- Κουμπί scroll στη φόρμα -->
+    <a href="connect.html" class="join-button" onclick="openModal()">Μάθε περισσότερα</a>
+  </div>
+</section>
+
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h3>Φόρμα Εγγραφής</h3>
+    <form action="https://formsubmit.co/akronservices@mail.com" method="POST" onsubmit="showSuccessMessage(event)">
+      <input type="text" name="Ονοματεπώνυμο" placeholder="Ονοματεπώνυμο" required>
+      <input type="email" name="Email" placeholder="Email" required>
+      <input type="tel" name="Τηλέφωνο" placeholder="Τηλέφωνο" required>
+      <input type="text" name="Τόπος Κατοικίας" placeholder="Τόπος Κατοικίας" required>
+      <input type="text" name="Διεύθυνση" placeholder="Διεύθυνση" required>
+      <select name="Επιλογή" required>
+        <option value="">Επιλέξτε ρόλο</option>
+        <option value="Μέλος">Γίνε μέλος</option>
+        <option value="Εθελοντής">Γίνε εθελοντής</option>
+      </select>
+    
+      <!-- Μυστικά πεδία για redirect και προστασία -->
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://example.com/success.html">
+    
+      <button type="submit">Αποστολή</button>
+    </form>
+    
+    <div id="successMessage" style="display:none; color:green; margin-top:15px; font-weight:bold;">
+      Η φόρμα υποβλήθηκε επιτυχώς! Θα επικοινωνήσουμε μαζί σας σύντομα.
+    </div>
+    
+  </div>
+</div>
+
+
+
+
+<section id="contact" class="content-section2">
+  <div class="content-wrapper">
+    <h3>Επικοινωνήστε μαζί μας</h3>
+    <!-- Οδηγεί σε άλλη σελίδα επαφής (π.χ. contact.html) -->
+    <a href="contact.html">
+      <img src="200.png" alt="Εικόνα Επικοινωνίας" class="contact-image">
+    </a>
+  </div>
+</section>
+
 
   <footer>
     <p>&copy; Α.Μ.Κ.Ε. ΔΙΕΘΝΗΣ ΔΡΑΣΗ - INTERACTION | All rights reserved</p>
   </footer>
-  <script src="script.js"></script>
-  <script>
-    
-    let currentSlide = 0;
-    let carouselInterval;
 
-    function moveSlide(direction) {
-      const track = document.querySelector('.carousel-track');
-      const slides = track.querySelectorAll('img');
-      const totalSlides = slides.length;
+ <!-- Top Button with circular progress - 40x40 -->
+<button id="topBtn" style="width: 40px; height: 40px;">
+  ↑
+  <svg id="progressCircle" width="40" height="40">
+    <circle
+      cx="20"
+      cy="20"
+      r="18"
+      stroke="#ffffff"
+      stroke-width="4"
+      fill="none"
+      stroke-linecap="round"
+      stroke-dasharray="113.1"
+      stroke-dashoffset="113.1"
+    />
+  </svg>
+</button>
+<script>
+  function openModal() {
+  document.getElementById('modal').style.display = 'block';
+}
 
-      currentSlide += direction;
-      if (currentSlide < 0) currentSlide = totalSlides - 1;
-      if (currentSlide >= totalSlides) currentSlide = 0;
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
 
-      const slideWidth = slides[0].clientWidth;
-      track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+// Κλείσιμο αν πατηθεί έξω από το modal
+window.onclick = function(event) {
+  const modal = document.getElementById('modal');
+  if (event.target == modal) {
+    modal.style.display = 'none';
+  }
+}
+
+  function showSuccessMessage(event) {
+    const message = document.getElementById("successMessage");
+    message.style.display = "block";
+
+    // Μπορείς να προσθέσεις delay για να το δει ο χρήστης
+    setTimeout(() => {
+      message.style.display = "none";
+    }, 4000);
+  }
+</script>
+
+<script>
+  const topBtn = document.getElementById("topBtn");
+  const circle = document.querySelector("#progressCircle circle");
+  const radius = 18; // Νέο radius
+  const circumference = 2 * Math.PI * radius;
+
+  // Ορίζουμε stroke dash values βάσει του νέου κύκλου
+  circle.style.strokeDasharray = `${circumference}`;
+  circle.style.strokeDashoffset = `${circumference}`;
+
+  function updateProgress() {
+    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPercent = scrollTop / scrollHeight;
+    const draw = circumference * (1 - scrollPercent);
+    circle.style.strokeDashoffset = draw;
+
+    // Εμφάνιση ή απόκρυψη του κουμπιού
+    if (scrollTop > 100) {
+      topBtn.style.display = "flex";
+    } else {
+      topBtn.style.display = "none";
     }
+  }
 
-    function startCarousel() {
-      carouselInterval = setInterval(() => moveSlide(1), 4000);
-    }
+  window.addEventListener("scroll", updateProgress);
 
-    function stopCarousel() {
-      clearInterval(carouselInterval);
-    }
-
-    // Ξεκινάει αυτόματα
-    startCarousel();
-
-    // Παύση στο hover
-    const carousel = document.querySelector('#carousel');
-    carousel.addEventListener('mouseenter', stopCarousel);
-    carousel.addEventListener('mouseleave', startCarousel);
-
-  // Ενεργοποίηση εικόνας όταν εμφανίζεται στο scroll
-const puzzleSection = document.querySelector('#projects');
-const puzzleImages = document.querySelectorAll('.puzzle-gallery img');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const img = entry.target;
-      img.classList.add('animate'); // Προσθήκη της κλάσης για animation
-      observer.unobserve(img); // Σταματάμε την παρακολούθηση μόλις ενεργοποιηθεί η κίνηση
-    }
+  // Κλικ για scroll top
+  topBtn.addEventListener('click', function () {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   });
-}, {
-  threshold: 0.3 // Αν η εικόνα είναι 30% ορατή στην οθόνη, ενεργοποιείται το animation
-});
-
-// Εφαρμογή παρακολούθησης σε όλες τις εικόνες
-puzzleImages.forEach(img => {
-  observer.observe(img);
-});
+</script>
 
 
-  </script>
- <script>
-   function openModal(category) {
-      document.getElementById(category + 'Modal').style.display = 'flex';
-    }
 
-    function closeModal(category) {
-      document.getElementById(category + 'Modal').style.display = 'none';
-    }
+<script>
+const text = "Προβάλλουμε τον Ελληνικό Πολιτισμό Διεθνώς";
+const typingText = document.getElementById('typing-text');
 
-    // Κλείσιμο του modal αν κάνουμε κλικ εκτός του modal content
-    window.onclick = function(event) {
-      if (event.target.classList.contains('modal')) {
-        closeModal(event.target.id.replace('Modal', ''));
-      }
-    }
+typingText.innerHTML = text; // Εμφανίζει το κείμενο απευθείας
+typingText.style.borderRight = 'none'; // Αφαιρεί τον δρομέα
   </script>
   <script>
-  function updateActiveSlide() {
-    const slides = document.querySelectorAll('.carousel-track img');
-    slides.forEach(slide => slide.classList.remove('active'));
-    slides[currentSlide].classList.add('active');
-  }
-  
-  // Ανανέωση κάθε φορά που αλλάζει το slide
-  function moveSlide(direction) {
-    const track = document.querySelector('.carousel-track');
-    const slides = track.querySelectorAll('img');
-    const totalSlides = slides.length;
-  
-    currentSlide += direction;
-    if (currentSlide < 0) currentSlide = totalSlides - 1;
-    if (currentSlide >= totalSlides) currentSlide = 0;
-  
-    const slideWidth = slides[0].clientWidth;
-    track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-  
-    updateActiveSlide();  // Ενημέρωση ενεργής εικόνας
-  }
-  
-</script> 
-<script> 
+    function toggleMenu() {
+      const nav = document.getElementById("main-nav");
+      nav.style.display = nav.style.display === "flex" ? "none" : "flex";
+    }
+    </script>
     
-</script> 
 </body>
 </html>
