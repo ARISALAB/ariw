@@ -176,10 +176,14 @@ form button:hover {
           border-radius: 4px; /* Μείωση της στρογγυλοποίησης των γωνιών */
         }
 
-@media (max-width: 768px) {
+           @media (max-width: 768px) {
   .culture-img {
-    height: 100vh; /* 60% του ύψους της οθόνης */
-    object-fit: cover; /* Καλύπτει ολόκληρο το container */
+    height: 100vh;
+    width: auto;
+    max-width: 100%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
   }
 }
 
