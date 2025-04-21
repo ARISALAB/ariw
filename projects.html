@@ -502,6 +502,10 @@ content: ""; /* Αφαιρεί την κάθετο μετά το τελευτα�
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
   cursor: pointer;
 }
+.puzzle-wrapper {
+  background-size: cover;
+  background-position: center;
+}
 
 .puzzle-wrapper > div {
   margin: 0;
@@ -563,6 +567,7 @@ content: ""; /* Αφαιρεί την κάθετο μετά το τελευτα�
   <script src="script.js"></script>
 
   <script>
+
 const createPuzzle = (wrapper, rows = 10, cols = 10) => {
   if (wrapper.dataset.loaded) return;
   wrapper.dataset.loaded = "true";
@@ -573,7 +578,10 @@ const createPuzzle = (wrapper, rows = 10, cols = 10) => {
 
       piece.style.backgroundImage = wrapper.style.getPropertyValue("--img");
       piece.style.backgroundSize = `${cols * 100}% ${rows * 100}%`;
-      piece.style.backgroundPosition = `${(x / (cols - 1)) * 100}% ${(y / (rows - 1)) * 100}%`;
+      piece.style.backgroundPosition = `${(x * 100) / (cols - 1)}% ${(y * 100) / (rows - 1)}%`;
+piece.style.backgroundSize = `${cols * 100}% ${rows * 100}%`;
+piece.style.willChange = 'transform, opacity';
+piece.style.transform = 'translateZ(0)';
 
       piece.style.animationDelay = `${(y * cols + x) * 40}ms`;
       wrapper.appendChild(piece);
@@ -598,9 +606,7 @@ document.querySelectorAll('.puzzle-wrapper').forEach(wrapper => {
   puzzleObserver.observe(wrapper);
 });
 
-    document.querySelectorAll('.puzzle-wrapper').forEach(wrapper => {
-      observer.observe(wrapper);
-    });
+ 
   </script>
   
   
