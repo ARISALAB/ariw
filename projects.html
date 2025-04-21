@@ -372,10 +372,10 @@
         <h3>Δράσεις</h3>
         <div class="category-buttons">
             <button onclick="window.location.href='projects.html'">Πολιτισμός</button>
-            <button onclick="window.location.href='projects.html'">Τουρισμός</button>
-            <button onclick="window.location.href='projects.html'">Περιβάλλον</button>
-            <button onclick="window.location.href='projects.html'">Εκπαίδευση</button>
-            <button onclick="window.location.href='projects.html'">Τεχνολογία</button>
+            <button onclick="window.location.href='tourism_page.html'">Τουρισμός</button>
+            <button onclick="window.location.href='environment_page.html'">Περιβάλλον</button>
+            <button onclick="window.location.href='education_page.html'">Εκπαίδευση</button>
+            <button onclick="window.location.href='technology_page.html'">Τεχνολογία</button>
         </div>
         </div>
 </section>
@@ -465,24 +465,146 @@ content: ""; /* Αφαιρεί την κάθετο μετά το τελευτα�
         </div>
       </div>
     
-      <div class="puzzle-gallery">
-        <img src="7.jpg" alt="Φεστιβάλ Σύγχρονης Τέχνης">
-        <img src="2.jpg" alt="Εργαστήρι Θεατρικής Γραφής">
-        <img src="3.jpg" alt="Ανταλλαγή Αθήνα - Βερολίνο">
-        <img src="4.jpg" alt="Ψηφιακή Έκθεση">
-        <img src="5.jpg" alt="Ψηφιακή Έκθεση">
-        <img src="6.jpg" alt="Ψηφιακή Έκθεση">
-        <img src="100.jpg" alt="Ψηφιακή Έκθεση">
-        <img src="15.jpg" alt="Ψηφιακή Έκθεση">
+      <section>
+        <div>
+          <h2 style="color: #2C3E50; font-size: 1.8em; text-align: center; margin-bottom: 15px; border-bottom: 2px solid #F4D35E; display: inline-block; padding-bottom: 5px;">
+            ΣΥΝΕΡΓΑΤΕΣ - ΥΠΟΣΤΗΡΙΚΤΕΣ
+          </h2>
+          <div class="partners-gallery">
+            <a href="https://artvibes.gr/" target="_blank" class="puzzle-wrapper" style="--img: url('1000.jpg');"></a>
+            <a href="https://www.edustandards.eu/" target="_blank" class="puzzle-wrapper" style="--img: url('200.jpg');"></a>
+            <a href="https://www.globaleducs.com/" target="_blank" class="puzzle-wrapper" style="--img: url('300.jpg');"></a>
+          </div>
+        
+        
+      </section>
+      
+      <style>
+        section {
+      text-align: center; /* Κεντράρει το inline-block h2 */
+    }
+    .partners-gallery {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  padding: 20px 0;
+}
+.puzzle-wrapper {
+  position: relative;
+  width: 360px;
+  height: 225px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
 
-      </div>
-    </div>
-  </section>
+.puzzle-wrapper > div {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+  background-image: var(--img);
+  background-size: 1000% 1000%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transform: scale(0.6);
+  animation: revealPiece 0.8s ease-out forwards;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Εδώ κάνουμε την "μεγέθυνση" στο background */
+.puzzle-wrapper:hover > div {
+  transform: scale(1);
+  filter: brightness(1.1);
+}
+
+
+@keyframes revealPiece {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+
+
+    h2 {
+      color: #2C3E50;
+      font-size: 1em; /* Αύξηση του μεγέθους του τίτλου για να ταιριάζει με τις μεγαλύτερες εικόνες */
+      text-align: center;
+      margin-bottom: 20px; /* Λίγο περισσότερο margin κάτω από τον τίτλο */
+      border-bottom: 3px solid #F4D35E; /* Κάνει την γραμμή πιο έντονη */
+      display: inline-block;
+      padding-bottom: 8px; /* Περισσότερο padding κάτω από τον τίτλο */
+    }
+    @media (max-width: 768px) {
+  .partners-gallery {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .puzzle-wrapper {
+    width: 90vw;
+    height: calc(90vw * 0.60); /* κρατάει αναλογία 4:3 */
+  }
+}
+      </style>
 
   <footer>
     <p>&copy; Α.Μ.Κ.Ε. ΔΙΕΘΝΗΣ ΔΡΑΣΗ - INTERACTION | All rights reserved</p>
   </footer>
   <script src="script.js"></script>
+
+  <script>
+const createPuzzle = (wrapper, rows = 10, cols = 10) => {
+  if (wrapper.dataset.loaded) return;
+  wrapper.dataset.loaded = "true";
+
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      const piece = document.createElement("div");
+
+      piece.style.backgroundImage = wrapper.style.getPropertyValue("--img");
+      piece.style.backgroundSize = `${cols * 100}% ${rows * 100}%`;
+      piece.style.backgroundPosition = `${(x / (cols - 1)) * 100}% ${(y / (rows - 1)) * 100}%`;
+
+      piece.style.animationDelay = `${(y * cols + x) * 40}ms`;
+      wrapper.appendChild(piece);
+    }
+  }
+};
+
+  
+   // Για puzzle
+const puzzleObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      createPuzzle(entry.target);
+      puzzleObserver.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.2
+});
+
+document.querySelectorAll('.puzzle-wrapper').forEach(wrapper => {
+  puzzleObserver.observe(wrapper);
+});
+
+    document.querySelectorAll('.puzzle-wrapper').forEach(wrapper => {
+      observer.observe(wrapper);
+    });
+  </script>
+  
+  
+
   <script>
     
     let currentSlide = 0;
