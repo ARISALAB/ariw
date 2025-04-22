@@ -188,46 +188,88 @@
         .container h3 {
     color: #ffffff; /* Άσπρο χρώμα για το "Δράσεις" */
 }
+
+.bars-container {
+  max-width: 800px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.bar {
+  background-color: #ddd;
+  border-radius: 25px;
+  overflow: hidden;
+  height: 40px;
+  position: relative;
+}
+
+.bar-fill {
+  background-color: #F4D35E;
+  height: 100%;
+  width: 0;
+  border-radius: 25px;
+  transition: width 2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2C3E50;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.bar-title {
+  z-index: 1;
+}
   </style>
 </head>
 <body>
    
-      
-<!-- Hamburger menu -->
+    <!-- Hamburger menu -->
 <div class="hamburger" onclick="toggleMenu()">☰</div>
-    <header>
-        
-        <h1>
-          <span class="title-main">Α.Μ.Κ.Ε. ΔΙΕΘΝΗΣ ΔΡΑΣΗ</span><span class="dash">  - </span><span class="title-sub">INTERACTION</span>
-        </h1>
-        
-        
-            <p>Σύγχρονη Πολιτιστική Παρουσία με Παγκόσμια Προοπτική</p>
-        <nav id="main-nav">
-          <ul>
-            <li><a href="index.html">ΑΡΧΙΚΗ</a></li>
-            <li><a href="about.html">ΣΧΕΤΙΚΑ</a></li>
-            <li class="dropdown">
-              <a href="projects.html">ΔΡΑΣΕΙΣ</a>
-              <div class="dropdown-content">
-                  <a href="culture_page.html">Πολιτισμός</a>
-                  <a href="tourism_page.html">Τουρισμός</a>
-                  <a href="environment_page.html">Περιβάλλον</a>
-                  <a href="education_page.html">Εκπαίδευση</a>
-                  <a href="technology_page.html">Τεχνολογία</a>
-              </div>
-          </li>            <li class="dropdown">
-              <a href="connect.html">ΣΥΜΜΕΤΟΧΗ</a>
-              <div class="dropdown-content">
-                <a href="volunteer.html">Γίνε Εθελοντής</a>
-                <a href="member.html">Γίνε Μέλος</a>
-              </div>
-            </li>
-            <li><a href="contact.html">ΕΠΙΚΟΙΝΩΝΙΑ</a></li>
-          </ul>
-        </nav>
-        
-      </header>
+
+<header>
+  <div class="header-container">
+    <a href="index.html">
+        <img src="big.jpg" alt="Λογότυπο" class="logo">
+      </a>    <div class="title-container">
+      <h1>
+        <span class="title-main">Α.Μ.Κ.Ε. ΔΙΕΘΝΗΣ ΔΡΑΣΗ</span>
+        <span class="dash"> - </span>
+        <span class="title-sub">INTERACTION</span>
+      </h1>
+      <p>Σύγχρονη Πολιτιστική Παρουσία με Παγκόσμια Προοπτική</p>
+    </div>
+  </div>
+
+  <nav id="main-nav">
+    <ul>
+      <li><a href="index.html">ΑΡΧΙΚΗ</a></li>
+      <li><a href="about.html">ΣΧΕΤΙΚΑ</a></li>
+      <li class="dropdown">
+        <a href="projects.html">ΔΡΑΣΕΙΣ</a>
+        <div class="dropdown-content">
+          <a href="culture_page.html">Πολιτισμός</a>
+          <a href="tourism_page.html">Τουρισμός</a>
+          <a href="environment_page.html">Περιβάλλον</a>
+          <a href="education_page.html">Εκπαίδευση</a>
+          <a href="technology_page.html">Τεχνολογία</a>
+        </div>
+      </li>
+      <li class="dropdown">
+        <a href="connect.html">ΣΥΜΜΕΤΟΧΗ</a>
+        <div class="dropdown-content">
+          <a href="volunteer.html">Γίνε Εθελοντής</a>
+          <a href="member.html">Γίνε Μέλος</a>
+        </div>
+      </li>
+      <li><a href="contact.html">ΕΠΙΚΟΙΝΩΝΙΑ</a></li>
+    </ul>
+  </nav>
+</header>
+
 
 
   <!-- Carousel πάνω από τις φωτογραφίες -->
@@ -264,6 +306,28 @@
             <button onclick="window.location.href='technology_page.html'">Τεχνολογία</button>
         </div>
         </div>
+        <div class="bars-container">
+            <div class="bar">
+              <div class="bar-fill" data-percentage="100%">
+                <span class="bar-title">Συμμετοχές σε Projects</span>
+              </div>
+            </div>
+            <div class="bar">
+              <div class="bar-fill" data-percentage="100%">
+                <span class="bar-title">Διεθνείς Συνεργασίες</span>
+              </div>
+            </div>
+            <div class="bar">
+              <div class="bar-fill" data-percentage="100%">
+                <span class="bar-title">Εκδηλώσεις</span>
+              </div>
+            </div>
+            <div class="bar">
+              <div class="bar-fill" data-percentage="100%">
+                <span class="bar-title">Πολιτιστικά Προγράμματα</span>
+              </div>
+            </div>
+          </div>
 </section>
 
 <style>
@@ -304,24 +368,26 @@ content: ""; /* Αφαιρεί την κάθετο μετά το τελευτα�
 }
 </style>
 
-      <section>
-        <div>
-            <div style="text-align: center;">
-                <h2 style="color: #2C3E50; margin-bottom: 15px; border-bottom: 2px solid #F4D35E; display: inline-block; padding-bottom: 5px; font-size: 1.7em;">
-                  Συνεργάτες - Υποστηρικτές
-                </h2>
-              </div>
-                           
-              
-          <div class="partners-gallery">
-            <a href="https://artvibes.gr/" target="_blank" class="partner" style="background-image: url('1000.jpg');"></a>
-            <a href="https://www.edustandards.eu/" target="_blank" class="partner" style="background-image: url('200.jpg');"></a>
-            <a href="https://www.globaleducs.com/" target="_blank" class="partner" style="background-image: url('300.jpg');"></a>
-          </div>
-          
-        
-        
-      </section>
+<section>
+    <div>
+      <div style="text-align: center;">
+        <h2 style="color: #2C3E50; margin-bottom: 15px; border-bottom: 2px solid #F4D35E; display: inline-block; padding-bottom: 5px; font-size: 1.7em;">
+          Συνεργάτες - Υποστηρικτές
+        </h2>
+      </div>
+  
+
+
+  
+      <!-- Partners -->
+      <div class="partners-gallery">
+        <a href="https://artvibes.gr/" target="_blank" class="partner" style="background-image: url('1000.jpg');"></a>
+        <a href="https://www.edustandards.eu/" target="_blank" class="partner" style="background-image: url('200.jpg');"></a>
+        <a href="https://www.globaleducs.com/" target="_blank" class="partner" style="background-image: url('300.jpg');"></a>
+      </div>
+    </div>
+  </section>
+  
       
     
 <style>
@@ -487,8 +553,25 @@ puzzleImages.forEach(img => {
   }
   
 </script> 
-<script> 
-    
-</script> 
+
+<script>
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const fill = entry.target;
+          const percentage = fill.getAttribute("data-percentage");
+          fill.style.width = percentage;
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+  
+    document.querySelectorAll('.bar-fill').forEach(bar => {
+      barObserver.observe(bar);
+    });
+  </script>
+  
 </body>
 </html>
