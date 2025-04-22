@@ -383,7 +383,7 @@ footer {
   padding: 8px 12px; /* Μείωση του padding */
   cursor: pointer;
   position: absolute;
-  top: 10px; /* Μείωση της απόστασης από την κορυφή */
+  top: 25px; /* Μείωση της απόστασης από την κορυφή */
   right: 10px; /* Μείωση της απόστασης από τα δεξιά */
   z-index: 1001;
   border-radius: 4px; /* Μείωση της στρογγυλοποίησης των γωνιών */
