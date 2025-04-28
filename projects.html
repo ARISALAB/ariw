@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="el">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" type="image/jpeg" href="big.jpg">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/jpeg" href="big.jpg">
 
-  <title>Δράσεις - ΑΜΚΕ ΔΙΕΘΝΗΣ ΔΡΑΣΗ</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-  <style>
-   
- 
+    <title>Δράσεις - ΑΜΚΕ ΔΙΕΘΝΗΣ ΔΡΑΣΗ</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+    <style>
+        /* Προσθήκη/Τροποποίηση CSS εδώ για το καρουζέλ και τα κουμπιά */
+
         .container h3 {
             color: #000000;
             font-size: 1.8em;
@@ -20,37 +20,36 @@
             padding-bottom: 5px;
         }
 
-      
-@media (max-width: 768px) {
-    .puzzle-gallery {
-        display: block; /* Απενεργοποίηση του grid σε κινητά */
-        padding: 0;
-    }
+        @media (max-width: 768px) {
+            .puzzle-gallery {
+                display: block; /* Απενεργοποίηση του grid σε κινητά */
+                padding: 0;
+            }
 
-    .puzzle-gallery img {
-        width: 100vw;
-        max-width: none; /* Αφαίρεση του max-width για να καταλαμβάνει όλο το πλάτος */
-        margin: 10px 0; /* Αλλαγή σε 0 για να μην υπάρχουν περιθώρια δεξιά και αριστερά */
-        height: auto; /* Επαναφορά του ύψους σε auto για κινητά */
-        border-radius: 10px;
-        display: block;
-    }
-}
-@media (max-width: 600px) {
-    .puzzle-gallery {
-        display: block; /* Απενεργοποίηση του grid σε κινητά */
-        padding: 0;
-    }
+            .puzzle-gallery img {
+                width: 100vw;
+                max-width: none; /* Αφαίρεση του max-width για να καταλαμβάνει όλο το πλάτος */
+                margin: 10px 0; /* Αλλαγή σε 0 για να μην υπάρχουν περιθώρια δεξιά και αριστερά */
+                height: auto; /* Επαναφορά του ύψους σε auto για κινητά */
+                border-radius: 10px;
+                display: block;
+            }
+        }
+        @media (max-width: 600px) {
+            .puzzle-gallery {
+                display: block; /* Απενεργοποίηση του grid σε κινητά */
+                padding: 0;
+            }
 
-    .puzzle-gallery img {
-        width: 100vw;
-        max-width: none; /* Αφαίρεση του max-width για να καταλαμβάνει όλο το πλάτος */
-        margin: 10px 0; /* Αλλαγή σε 0 για να μην υπάρχουν περιθώρια δεξιά και αριστερά */
-        height: auto; /* Επαναφορά του ύψους σε auto για κινητά */
-        border-radius: 10px;
-        display: block;
-    }
-}
+            .puzzle-gallery img {
+                width: 100vw;
+                max-width: none; /* Αφαίρεση του max-width για να καταλαμβάνει όλο το πλάτος */
+                margin: 10px 0; /* Αλλαγή σε 0 για να μην υπάρχουν περιθώρια δεξιά και αριστερά */
+                height: auto; /* Επαναφορά του ύψους σε auto για κινητά */
+                border-radius: 10px;
+                display: block;
+            }
+        }
 
         /* Ορισμός του animation */
         @keyframes fadeIn {
@@ -65,61 +64,77 @@
         }
 
 
-
-
         .carousel-container {
             position: relative;
             width: 100%;
-            max-width: 1000px;
-            margin: 20px auto 40px; /* Προσθήκη margin-top για απόσταση από το header */
+            max-width: 1300px;
+            height: 600px;
+            margin: auto;
             overflow: hidden;
         }
 
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease;
-        }
+        .carousel-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 550px;
+    object-fit: cover;
+    transform-origin: left center;
+    backface-visibility: hidden;
+    transition: transform 1s ease, opacity 1s ease;
+    opacity: 0;
+    z-index: 0;
+}
 
-        .carousel-track img {
-            width: 100%;
-            flex-shrink: 0;
-            object-fit: cover;
-            border-radius: 12px;
-            height: 500px;
-            transition: transform 0.3s, box-shadow 0.3s ease-in-out;
-        }
+.carousel-img.active {
+    opacity: 1;
+    z-index: 1;
+    transform: rotateY(0deg);
+}
 
-        /* Ενεργοποίηση φωτισμού όταν το καρουζέλ είναι σε hover */
-        .carousel-track img:hover {
-            transform: scale(1.05); /* Μικρή αύξηση μεγέθους */
-            box-shadow: 0 0 20px rgba(255, 255, 0, 0.8); /* Φωτεινός θρόισμα γύρω από την εικόνα */
-        }
+.carousel-img.flip-out {
+    transform: rotateY(-90deg);
+    opacity: 0;
+    z-index: 0;
+}
 
-        /* Προσθήκη φωτισμού στην τρέχουσα εικόνα */
-        .carousel-track img.active {
-            filter: brightness(1.2);
-            box-shadow: 0 0 30px rgba(255, 255, 0, 0.9); /* Φωτεινός θρόισμα με περισσότερο φως */
-        }
+.carousel-img.flip-in {
+    transform: rotateY(90deg);
+    opacity: 0;
+    z-index: 0;
+}
 
+
+        /* Αρχική κατάσταση: τα κουμπιά είναι αόρατα */
         .carousel-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(5, 0, 0, 1);
+            background: rgba(5, 0, 0, 0.6); /* Ελαφρώς πιο διαφανές background */
             color: white;
             border: none;
             width: 40px;
             height: 40px;
             font-size: 1.2rem;
             cursor: pointer;
-            z-index: 1;
+            z-index: 2; /* Θέτουμε υψηλότερο z-index για να είναι πάνω από τις εικόνες */
             border-radius: 50%;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.3s, transform 0.3s;
+            transition: background 0.3s, transform 0.3s, opacity 0.3s ease; /* Προσθήκη opacity στο transition */
+            opacity: 0; /* Τα κουμπιά είναι αόρατα αρχικά */
+            pointer-events: none; /* Απενεργοποίηση click events όταν είναι αόρατα */
         }
+
+        /* Εμφάνιση κουμπιών όταν ο κέρσορας είναι πάνω στο container */
+        .carousel-container:hover .carousel-btn {
+            opacity: 1; /* Τα κουμπιά γίνονται ορατά */
+            pointer-events: auto; /* Ενεργοποίηση click events */
+        }
+
 
         .carousel-btn:hover {
             background: rgba(255, 255, 255, 0.2);
@@ -133,6 +148,50 @@
         .carousel-btn.right {
             right: 10px;
         }
+
+        /* Σε tablet και κινητά: μόνο 1 εικόνα στη σειρά - (Αυτό το CSS block δεν επηρεάζει άμεσα το carousel όπως είναι δομημένο τώρα, αλλά το αφήνω όπως το είχατε)*/
+        @media (max-width: 768px) {
+            .carousel-track img {
+                width: 100%;
+            }
+             .carousel-container {
+                height: 400px; /* Προσαρμόστε το ύψος σε μικρότερες οθόνες αν χρειάζεται */
+             }
+            .carousel-img {
+                 height: 400px;
+            }
+        }
+         @media (max-width: 480px) {
+             .carousel-container {
+                 height: 300px; /* Ακόμα μικρότερο ύψος σε κινητά */
+             }
+             .carousel-img {
+                 height: 300px;
+             }
+             .carousel-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 1rem;
+             }
+        }
+
+
+        /* Αυτά τα styles για το carousel-track και τα img:hover/active δεν επηρεάζουν το τρέχον carousel DOM structure */
+        /* Ενεργοποίηση φωτισμού όταν το καρουζέλ είναι σε hover */
+        /*
+        .carousel-track img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        }
+        */
+
+        /* Προσθήκη φωτισμού στην τρέχουσα εικόνα */
+        /*
+        .carousel-track img.active {
+            filter: brightness(1.2);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.9);
+        }
+        */
 
 
         .category-buttons button {
@@ -164,10 +223,8 @@
                 width: 90%;
                 font-size: 18px;
             }
-
-
         }
-     
+
         @media (max-width: 600px) {
             .category-buttons {
                 display: flex;
@@ -181,115 +238,298 @@
                 width: 90%;
                 font-size: 18px;
             }
-
-
         }
-     
+
         .container h3 {
-    color: #ffffff; /* Άσπρο χρώμα για το "Δράσεις" */
-}
+            color: #ffffff; /* Άσπρο χρώμα για το "Δράσεις" */
+        }
 
-.bars-container {
-  max-width: 800px;
-  margin: 50px auto;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 0 20px;
-}
+        /* ========================================= */
+        /* Στυλ για τα Τετράγωνα Δράσεων */
+        /* ========================================= */
+        .action-squares {
+            display: flex;
+            flex-wrap: wrap;
+            width: 300px;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+            margin: 50px auto;
+            position: relative;
+            transition: box-shadow 0.1s ease-out;
+        }
 
-.bar {
-  background-color: #ddd;
-  border-radius: 25px;
-  overflow: hidden;
-  height: 40px;
-  position: relative;
-}
+        /* Κοινές ιδιότητες για κάθε μικρό τετράγωνο */
+        .square-item {
+            width: 50%;
+            height: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 5px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            color: white;
+            transition: opacity 0.9s ease, transform 0.5s ease;
 
-.bar-fill {
-  background-color: #F4D35E;
-  height: 100%;
-  width: 0;
-  border-radius: 25px;
-  transition: width 2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #2C3E50;
-  font-weight: bold;
-  font-size: 1em;
-}
+            background-size: 200% 200%;
+            background-position: 0% 100%;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+        }
 
-.bar-title {
-  z-index: 1;
-}
-  </style>
+        /* Εφέ στο hover */
+        .square-item:hover {
+            transform: scale(1.05);
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5), 0 8px 20px rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        /* ========================================= */
+        /* Κανόνες Animation */
+        /* ========================================= */
+
+        /* Ορισμός του animation fillDiagonal */
+        @keyframes fillDiagonal {
+            0% {
+                background-position: 0% 100%;
+                opacity: 0.5;
+            }
+            100% {
+                background-position: 100% 0%;
+                opacity: 1;
+            }
+        }
+
+        /* Κλάση που ενεργοποιεί το animation */
+        .square-item.animate-fill {
+            animation: fillDiagonal 2s ease-out forwards;
+        }
+
+        /* ========================================= */
+        /* Χρώματα και Gradients για κάθε μικρό τετράγωνο (Νέα Παλέτα) */
+        /* ========================================= */
+        .square-top-left {
+            background-image: linear-gradient(to bottom right, #A569BD, #8E44AD);
+        }
+
+        .square-top-right {
+            background-image: linear-gradient(to bottom left, #F5B041, #E67E22);
+        }
+
+        .square-bottom-left {
+            background-image: linear-gradient(to top right, #E91E63, #C2185B);
+        }
+
+        .square-bottom-right {
+            background-image: linear-gradient(to top left, #48C9B0, #16A085);
+        }
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            position: relative;
+            padding: 10px 20px;
+        }
+
+        .logo {
+            height: 200px;
+            width: auto;
+            position: absolute;
+            left: 20px;
+            top: 10px;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        @media (max-width: 900px) {
+            .header-container {
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .logo {
+                position: static;
+                margin-bottom: 10px;
+                height: 100px;
+            }
+        }
+        @media (max-width: 600px) {
+            .header-container {
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .logo {
+                position: static;
+                margin-bottom: 10px;
+                height: 100px;
+            }
+        }
+
+        .news-ticker-banner {
+            background-color: #2C3E50; /* Σκούρο μπλε */
+            color: white;
+            padding: 8px 0; /* Μείωση του vertical padding */
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 2px solid #FFD700; /* Χρυσή γραμμή */
+        }
+
+        .ticker-wrap {
+            display: inline-block;
+            padding-left: 100%; /* Ξεκινάει εκτός οθόνης */
+            animation: ticker 25s linear infinite; /* Προσαρμόστε την ταχύτητα εδώ */
+        }
+
+        .ticker-item {
+            display: inline-block;
+            padding: 0 0; /* Αφαιρούμε το οριζόντιο padding από το ticker-item */
+            font-size: 1.1em;
+            margin-right: 10px; /* Προσθέτουμε περιθώριο δεξιά για την απόσταση πριν την κάθετο */
+        }
+
+        .ticker-item::after {
+            content: " | "; /* Προσθέτει την κάθετο μετά από κάθε στοιχείο */
+            padding-left: 10px; /* Προσθέτει την απόσταση μετά την κάθετο */
+        }
+
+        .ticker-item:last-child::after {
+            content: ""; /* Αφαιρεί την κάθετο μετά το τελευταίο στοιχείο */
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .partners-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .partner {
+            display: block;
+            width: 360px;
+            height: 225px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+            opacity: 0;
+            transform: translateX(-80px);
+            transition: opacity 1.5s ease, transform 1.5s ease;
+        }
+
+        .partner.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .partner:hover {
+            transform: scale(1.07);
+            z-index: 2;
+            transition: transform 0.4s ease;
+        }
+
+        @media (max-width: 768px) {
+            .partner {
+                width: 90vw;
+                height: calc(90vw * 0.6);
+            }
+        }
+
+        section {
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #F4D35E;
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+
+    </style>
 </head>
 <body>
-   
-    <!-- Hamburger menu -->
-<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
 
 <header>
-  <div class="header-container">
-    <a href="index.html">
-        <img src="big.jpg" alt="Λογότυπο" class="logo">
-      </a>    <div class="title-container">
-      <h1>
-        <span class="title-main">Α.Μ.Κ.Ε. ΔΙΕΘΝΗΣ ΔΡΑΣΗ</span>
-        <span class="dash"> - </span>
-        <span class="title-sub">INTERACTION</span>
-      </h1>
-      <p>Σύγχρονη Πολιτιστική Παρουσία με Παγκόσμια Προοπτική</p>
+    <div class="header-container">
+        <a href="index.html">
+            <img src="big.png" alt="Λογότυπο" class="logo">
+        </a>
+        <div class="title-container">
+            <h1>
+                <span class="title-main">Α.Μ.Κ.Ε. ΔΙΕΘΝΗΣ ΔΡΑΣΗ</span>
+                <span class="dash"> - </span>
+                <span class="title-sub">INTERACTION</span>
+            </h1>
+            <p>Σύγχρονη Πολιτιστική Παρουσία με Παγκόσμια Προοπτική</p>
+        </div>
     </div>
-  </div>
 
-  <nav id="main-nav">
-    <ul>
-      <li><a href="index.html">ΑΡΧΙΚΗ</a></li>
-      <li><a href="about.html">ΣΧΕΤΙΚΑ</a></li>
-      <li class="dropdown">
-        <a href="projects.html">ΔΡΑΣΕΙΣ</a>
-        <div class="dropdown-content">
-          <a href="culture_page.html">Πολιτισμός</a>
-          <a href="tourism_page.html">Τουρισμός</a>
-          <a href="environment_page.html">Περιβάλλον</a>
-          <a href="education_page.html">Εκπαίδευση</a>
-          <a href="technology_page.html">Τεχνολογία</a>
-        </div>
-      </li>
-      <li class="dropdown">
-        <a href="connect.html">ΣΥΜΜΕΤΟΧΗ</a>
-        <div class="dropdown-content">
-          <a href="volunteer.html">Γίνε Εθελοντής</a>
-          <a href="member.html">Γίνε Μέλος</a>
-        </div>
-      </li>
-      <li><a href="contact.html">ΕΠΙΚΟΙΝΩΝΙΑ</a></li>
-    </ul>
-  </nav>
+    <nav id="main-nav">
+        <ul>
+            <li><a href="index.html">ΑΡΧΙΚΗ</a></li>
+            <li><a href="about.html">ΣΧΕΤΙΚΑ</a></li>
+            <li class="dropdown">
+                <a href="projects.html">ΔΡΑΣΕΙΣ</a>
+                <div class="dropdown-content">
+                    <a href="culture_page.html">Πολιτισμός</a>
+                    <a href="tourism_page.html">Τουρισμός</a>
+                    <a href="environment_page.html">Περιβάλλον</a>
+                    <a href="education_page.html">Εκπαίδευση</a>
+                    <a href="technology_page.html">Τεχνολογία</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="connect.html">ΣΥΜΜΕΤΟΧΗ</a>
+                <div class="dropdown-content">
+                    <a href="volunteer.html">Γίνε Εθελοντής</a>
+                    <a href="member.html">Γίνε Μέλος</a>
+                </div>
+            </li>
+            <li><a href="contact.html">ΕΠΙΚΟΙΝΩΝΙΑ</a></li>
+        </ul>
+    </nav>
 </header>
 
+<div class="carousel-container">
+    <img src="100.jpg" class="carousel-img active" alt="Carousel Image 1"/>
+    <img src="10.jpg" class="carousel-img" alt="Carousel Image 2"/>
+    <img src="17.jpg" class="carousel-img" alt="Carousel Image 3"/>
+    <img src="16.jpg" class="carousel-img" alt="Carousel Image 4"/>
+    <img src="14.jpg" class="carousel-img" alt="Carousel Image 5"/>
+    <img src="11.jpg" class="carousel-img" alt="Carousel Image 6"/>
+    <img src="102.jpg" class="carousel-img" alt="Carousel Image 7"/>
+    <img src="51.jpg" class="carousel-img" alt="Carousel Image 8"/>
 
-
-  <!-- Carousel πάνω από τις φωτογραφίες -->
-  <div class="carousel-container" id="carousel">
-    <div class="carousel-track">
-      <img src="1.jpg" alt="Καρουζέλ 1">
-      <img src="2.jpg" alt="Καρουζέλ 2">
-      <img src="3.jpg" alt="Καρουζέλ 3">
-    </div>
     <button class="carousel-btn left" onclick="moveSlide(-1)">❮</button>
-
     <button class="carousel-btn right" onclick="moveSlide(1)">❯</button>
+</div>
 
-  </div>
-
-  <div class="news-ticker-banner">
+<div class="news-ticker-banner">
     <div class="ticker-wrap">
-        <div class="ticker-item">Ενίσχυση και προβολή του σύγχρονου ελληνικού πολιτισμού Παγκοσμίως  </div>
+        <div class="ticker-item">Ενίσχυση και προβολή του σύγχρονου ελληνικού πολιτισμού Παγκοσμίως </div>
         <div class="ticker-item">Σύνδεση του τουρισμού με την προβολή του σύγχρονου πολιτισμού</div>
-        <div class="ticker-item">Προβολή μιας σύγχρονης "πολιτιστικής" διάστασης της περιβαλλοντικής συνείδησης</div>
+        <div class="ticker-item">Προβολή ενός σύγχρονου "πολιτιστικού" διάστασης της περιβαλλοντικής συνείδησης</div>
         <div class="ticker-item">Σύνδεση της εκπαίδευσης με την προβολή του σύγχρονου ελληνικού πνεύματος</div>
         <div class="ticker-item">Ένταξη της τεχνολογίας στην ευρύτερη έννοια του σύγχρονου πολιτισμού</div>
     </div>
@@ -305,273 +545,183 @@
             <button onclick="window.location.href='education_page.html'">Εκπαίδευση</button>
             <button onclick="window.location.href='technology_page.html'">Τεχνολογία</button>
         </div>
+        <div class="action-squares">
+            <div class="square-item square-top-left">Συμμετοχές σε Projects</div>
+            <div class="square-item square-top-right">Διεθνείς Συνεργασίες</div>
+            <div class="square-item square-bottom-left">Εκδηλώσεις</div>
+            <div class="square-item square-bottom-right">Πολιτιστικά Προγράμματα</div>
         </div>
-        <div class="bars-container">
-            <div class="bar">
-              <div class="bar-fill" data-percentage="100%">
-                <span class="bar-title">Συμμετοχές σε Projects</span>
-              </div>
-            </div>
-            <div class="bar">
-              <div class="bar-fill" data-percentage="100%">
-                <span class="bar-title">Διεθνείς Συνεργασίες</span>
-              </div>
-            </div>
-            <div class="bar">
-              <div class="bar-fill" data-percentage="100%">
-                <span class="bar-title">Εκδηλώσεις</span>
-              </div>
-            </div>
-            <div class="bar">
-              <div class="bar-fill" data-percentage="100%">
-                <span class="bar-title">Πολιτιστικά Προγράμματα</span>
-              </div>
-            </div>
-          </div>
+    </div>
 </section>
-
-<style>
-.news-ticker-banner {
-background-color: #2C3E50; /* Σκούρο μπλε */
-color: white;
-padding: 8px 0; /* Μείωση του vertical padding */
-overflow: hidden;
-white-space: nowrap;
-border-bottom: 2px solid #FFD700; /* Χρυσή γραμμή */
-}
-
-.ticker-wrap {
-display: inline-block;
-padding-left: 100%; /* Ξεκινάει εκτός οθόνης */
-animation: ticker 25s linear infinite; /* Προσαρμόστε την ταχύτητα εδώ */
-}
-
-.ticker-item {
-display: inline-block;
-padding: 0 0; /* Αφαιρούμε το οριζόντιο padding από το ticker-item */
-font-size: 1.1em;
-margin-right: 10px; /* Προσθέτουμε περιθώριο δεξιά για την απόσταση πριν την κάθετο */
-}
-
-.ticker-item::after {
-content: " | "; /* Προσθέτει την κάθετο μετά από κάθε στοιχείο */
-padding-left: 10px; /* Προσθέτει την απόσταση μετά την κάθετο */
-}
-
-.ticker-item:last-child::after {
-content: ""; /* Αφαιρεί την κάθετο μετά το τελευταίο στοιχείο */
-}
-
-@keyframes ticker {
-0% { transform: translateX(0); }
-100% { transform: translateX(-100%); }
-}
-</style>
 
 <section>
     <div>
-      <div style="text-align: center;">
-        <h2 style="color: #2C3E50; margin-bottom: 15px; border-bottom: 2px solid #F4D35E; display: inline-block; padding-bottom: 5px; font-size: 1.7em;">
-          Συνεργάτες - Υποστηρικτές
-        </h2>
-      </div>
-  
+        <div style="text-align: center;">
+            <h2 style="color: #2C3E50; margin-bottom: 15px; border-bottom: 2px solid #F4D35E; display: inline-block; padding-bottom: 5px; font-size: 1.7em;">
+                Συνεργάτες - Υποστηρικτές
+            </h2>
+        </div>
 
-
-  
-      <!-- Partners -->
-      <div class="partners-gallery">
-        <a href="https://artvibes.gr/" target="_blank" class="partner" style="background-image: url('1000.jpg');"></a>
-        <a href="https://www.edustandards.eu/" target="_blank" class="partner" style="background-image: url('200.jpg');"></a>
-        <a href="https://www.globaleducs.com/" target="_blank" class="partner" style="background-image: url('300.jpg');"></a>
-      </div>
+        <div class="partners-gallery">
+            <a href="https://artvibes.gr/" target="_blank" class="partner" style="background-image: url('1000.jpg');"></a>
+            <a href="https://www.edustandards.eu/" target="_blank" class="partner" style="background-image: url('200.jpg');"></a>
+            <a href="https://www.globaleducs.com/" target="_blank" class="partner" style="background-image: url('300.jpg');"></a>
+        </div>
     </div>
-  </section>
-  
-      
-    
-<style>
-    .partners-gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      padding: 20px;
-    }
-  
-    .partner {
-      display: block;
-      width: 360px;
-      height: 225px;
-      background-size: cover;
-      background-position: center;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
-      opacity: 0;
-      transform: translateX(-80px);
-      transition: opacity 1.5s ease, transform 1.5s ease;
-    }
-  
-    .partner.show {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  
-    .partner:hover {
-      transform: scale(1.07);
-      z-index: 2;
-      transition: transform 0.4s ease;
-    }
-  
-    @media (max-width: 768px) {
-      .partner {
-        width: 90vw;
-        height: calc(90vw * 0.6);
-      }
-    }
-  
-    section {
-      text-align: center;
-    }
-  
-    h2 {
-      font-size: 1.8em;
-      text-align: center;
-      margin-bottom: 20px;
-      border-bottom: 3px solid #F4D35E;
-      display: inline-block;
-      padding-bottom: 8px;
-    }
-  </style>
-      
+</section>
 
-  <footer>
+<footer>
     <p>&copy; Α.Μ.Κ.Ε. ΔΙΕΘΝΗΣ ΔΡΑΣΗ - INTERACTION | All rights reserved</p>
-  </footer>
-  <script src="script.js"></script>
-  <script>
-    const fadeInObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.classList.add('show');
-          }, index * 300); // Delay κάθε εικόνας
-          fadeInObserver.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.2
-    });
-  
-    document.querySelectorAll('.partner').forEach(el => {
-      fadeInObserver.observe(el);
-    });
-  </script>
-  
-  
+</footer>
 
-  <script>
-    
-    let currentSlide = 0;
-    let carouselInterval;
-
-    function moveSlide(direction) {
-      const track = document.querySelector('.carousel-track');
-      const slides = track.querySelectorAll('img');
-      const totalSlides = slides.length;
-
-      currentSlide += direction;
-      if (currentSlide < 0) currentSlide = totalSlides - 1;
-      if (currentSlide >= totalSlides) currentSlide = 0;
-
-      const slideWidth = slides[0].clientWidth;
-      track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-    }
-
-    function startCarousel() {
-      carouselInterval = setInterval(() => moveSlide(1), 4000);
-    }
-
-    function stopCarousel() {
-      clearInterval(carouselInterval);
-    }
-
-    // Ξεκινάει αυτόματα
-    startCarousel();
-
-    // Παύση στο hover
-    const carousel = document.querySelector('#carousel');
-    carousel.addEventListener('mouseenter', stopCarousel);
-    carousel.addEventListener('mouseleave', startCarousel);
-
-  // Ενεργοποίηση εικόνας όταν εμφανίζεται στο scroll
-const puzzleSection = document.querySelector('#projects');
-const puzzleImages = document.querySelectorAll('.puzzle-gallery img');
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const img = entry.target;
-      img.classList.add('animate'); // Προσθήκη της κλάσης για animation
-      observer.unobserve(img); // Σταματάμε την παρακολούθηση μόλις ενεργοποιηθεί η κίνηση
-    }
-  });
-}, {
-  threshold: 0.3 // Αν η εικόνα είναι 30% ορατή στην οθόνη, ενεργοποιείται το animation
-});
-
-// Εφαρμογή παρακολούθησης σε όλες τις εικόνες
-puzzleImages.forEach(img => {
-  observer.observe(img);
-});
-
-
-  </script>
-
-  
-  <script>
-  function updateActiveSlide() {
-    const slides = document.querySelectorAll('.carousel-track img');
-    slides.forEach(slide => slide.classList.remove('active'));
-    slides[currentSlide].classList.add('active');
-  }
-  
-  // Ανανέωση κάθε φορά που αλλάζει το slide
-  function moveSlide(direction) {
-    const track = document.querySelector('.carousel-track');
-    const slides = track.querySelectorAll('img');
-    const totalSlides = slides.length;
-  
-    currentSlide += direction;
-    if (currentSlide < 0) currentSlide = totalSlides - 1;
-    if (currentSlide >= totalSlides) currentSlide = 0;
-  
-    const slideWidth = slides[0].clientWidth;
-    track.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-  
-    updateActiveSlide();  // Ενημέρωση ενεργής εικόνας
-  }
-  
-</script> 
+<script src="script.js"></script>
 
 <script>
-    const barObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const fill = entry.target;
-          const percentage = fill.getAttribute("data-percentage");
-          fill.style.width = percentage;
-          barObserver.unobserve(entry.target);
+    const images = document.querySelectorAll('.carousel-img');
+    let currentIndex = 0;
+    const intervalTime = 5000; // 5 sec για αυτόματη αναπαραγωγή
+    let autoSlideInterval; // Μεταβλητή για τον timer
+
+    // Συνάρτηση για εμφάνιση συγκεκριμένης εικόνας
+    function showSlide(index) {
+        // Αφαίρεση active κλάσης από όλες τις εικόνες
+        images.forEach(img => img.classList.remove('active'));
+
+        // Εξασφάλιση ότι ο δείκτης είναι εντός ορίων
+        if (index >= images.length) {
+            currentIndex = 0;
+        } else if (index < 0) {
+            currentIndex = images.length - 1;
+        } else {
+            currentIndex = index;
         }
-      });
+
+        // Προσθήκη active κλάσης στην τρέχουσα εικόνα
+        images[currentIndex].classList.add('active');
+    }
+
+    // Συνάρτηση για μετάβαση στην επόμενη/προηγούμενη εικόνα
+    function moveSlide(direction) {
+        // Σταματάμε την αυτόματη αναπαραγωγή όταν ο χρήστης πατήσει κουμπί
+        clearInterval(autoSlideInterval);
+        showSlide(currentIndex + direction);
+        // Μπορείτε να προσθέσετε εδώ ένα timer για να ξαναρχίσει η αυτόματη αναπαραγωγή μετά από λίγο
+         startAutoSlide(); // Ξαναρχίζει η αυτόματη αναπαραγωγή
+    }
+
+     // Συνάρτηση για την αυτόματη μετάβαση
+    function startAutoSlide() {
+         autoSlideInterval = setInterval(() => {
+            showSlide(currentIndex + 1);
+        }, intervalTime);
+    }
+
+
+    // Αρχική εμφάνιση της πρώτης εικόνας μόλις φορτώσει η σελίδα
+    document.addEventListener('DOMContentLoaded', () => {
+        showSlide(currentIndex);
+        startAutoSlide(); // Ξεκινάμε την αυτόματη αναπαραγωγή
+    });
+
+    // Εκθέτουμε τη συνάρτηση moveSlide στον global scope
+    window.moveSlide = moveSlide;
+
+</script>
+
+<script>
+    const fadeInObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                setTimeout(() => {
+                    entry.target.classList.add('show');
+                }, index * 300); // Delay κάθε εικόνας
+                fadeInObserver.unobserve(entry.target);
+            }
+        });
     }, {
-      threshold: 0.5
+        threshold: 0.2
     });
-  
-    document.querySelectorAll('.bar-fill').forEach(bar => {
-      barObserver.observe(bar);
+
+    document.querySelectorAll('.partner').forEach(el => {
+        fadeInObserver.observe(el);
     });
-  </script>
-  
+</script>
+
+<script>
+    const squareFillObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            const square = entry.target;
+            if (entry.isIntersecting) {
+                // Ενεργοποιούμε το animation όταν μπαίνει στο viewport
+                square.classList.add('animate-fill');
+                // Αφήνουμε το animation να καθορίσει το τελικό opacity
+            } else {
+                // Ξανακρύβουμε το στοιχείο και αφαιρούμε το animation όταν βγαίνει από το viewport
+                square.classList.remove('animate-fill');
+                square.style.opacity = '0'; // reset opacity
+                 square.style.backgroundPosition = '0% 100%'; // Reset background position
+            }
+        });
+    }, {
+        threshold: 0.5 // Μισό του στοιχείου πρέπει να είναι ορατό
+    });
+
+    document.querySelectorAll('.square-item').forEach(square => {
+        // Θέτουμε αρχικά το opacity σε 0 για να λειτουργήσει το animation
+        square.style.opacity = '0';
+        squareFillObserver.observe(square);
+    });
+</script>
+
+<script>
+    // Script για την κινούμενη σκιά βάσει scroll
+    const actionSquaresContainer = document.querySelector('.action-squares');
+
+    if (actionSquaresContainer) { // Βεβαιωνόμαστε ότι το στοιχείο υπάρχει
+        // Ορισμός παραμέτρων σκιάς και κίνησης
+        const initialOffsetY = 100; // Σκιά αρχικά 60px κάτω
+        const initialBlur = 80; // Θολότητα σκιάς
+        const initialSpread = 0; // Διασπορά σκιάς
+        const shadowColor = 'rgba(0, 0, 0, 0.5)'; // Χρώμα και διαφάνεια
+        const scrollFactor = 0.15; // Συντελεστής οριζόντιας κίνησης
+        const initialOffsetX = 100; // Σκιά αρχικά 100px δεξιά
+
+        // Νέος συντελεστής για την κάθετη κίνηση
+        const verticalScrollFactor = 0.10; // Προσαρμόστε αυτή την τιμή για να ελέγξετε την κάθετη ταχύτητα
+
+
+        // Συνάρτηση που ενημερώνει τη σκιά βάσει του scroll
+        function updateShadow() {
+            // Λαμβάνουμε την τρέχουσα κάθετη θέση scroll
+            const scrollY = window.scrollY || window.pageYOffset;
+
+            // Υπολογίζουμε τη νέα οριζόντια θέση της σκιάς
+            // Καθώς το scrollY αυξάνεται (προς τα κάτω), ο currentOffsetX μειώνεται (προς τα αριστερά)
+            // Καθώς το scrollY μειώνεται (προς τα πάνω), ο currentOffsetX αυξάνεται (προς τα δεξιά)
+            const currentOffsetX = initialOffsetX - (scrollY * scrollFactor);
+
+            // Υπολογίζουμε τη νέα κάθετη θέση της σκιάς
+            // Καθώς το scrollY αυξάνεται (προς τα κάτω), ο currentOffsetY μειώνεται (προς τα πάνω)
+            // Καθώς το scrollY μειώνεται (προς τα πάνω), ο currentOffsetY αυξάνεται (προς τα κάτω)
+            const currentOffsetY = initialOffsetY - (scrollY * verticalScrollFactor);
+
+
+            // Εφαρμόζουμε τη νέα box-shadow στο στοιχείο
+            actionSquaresContainer.style.boxShadow =
+                `${currentOffsetX}px ${currentOffsetY}px ${initialBlur}px ${initialSpread}px ${shadowColor}`;
+        }
+
+        // Θέτουμε την αρχική κατάσταση της σκιάς μόλις φορτώσει η σελίδα
+        updateShadow();
+
+        // Προσθέτουμε τον event listener για το scroll στο παράθυρο
+        window.addEventListener('scroll', updateShadow);
+
+        // Σημείωση: Σε πιο σύνθετες εφαρμογές, καλό είναι να αφαιρείται ο listener
+        // όταν το στοιχείο δεν είναι πλέον απαραίτητο (π.χ. φεύγοντας από τη σελίδα).
+        // Για αυτή την περίπτωση, είναι αποδεκτό να παραμείνει.
+    }
+</script>
+
 </body>
 </html>
