@@ -65,3 +65,44 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+document.addEventListener('DOMContentLoaded', function () {
+    const isMobile = window.innerWidth <= 768; // προσαρμόζεται αν χρειάζεται
+
+    if (isMobile) {
+        const dropdownLinks = document.querySelectorAll('.dropdown-toggle');
+
+        dropdownLinks.forEach(link => {
+            let firstTap = false;
+
+            link.addEventListener('click', function (e) {
+                const dropdown = this.parentElement.querySelector('.dropdown-content');
+
+                if (!firstTap) {
+                    e.preventDefault();
+                    // Κλείσε άλλα dropdown
+                    document.querySelectorAll('.dropdown-content').forEach(menu => {
+                        if (menu !== dropdown) menu.style.display = 'none';
+                    });
+
+                    dropdown.style.display = 'block';
+                    firstTap = true;
+
+                    // Επαναφορά tap μετά από λίγο (ώστε να μπορεί να ξαναγίνει 2ο tap)
+                    setTimeout(() => { firstTap = false }, 1500);
+                } else {
+                    // 2ο tap -> ακολούθησε το href
+                    window.location.href = this.getAttribute('href');
+                }
+            });
+        });
+
+        // Αν πατηθεί αλλού, κλείσε dropdowns
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown-content').forEach(menu => {
+                    menu.style.display = 'none';
+                });
+            }
+        });
+    }
+});
