@@ -15,19 +15,30 @@
 @media (max-width: 768px) {
   /* ... (υπάρχοντες κανόνες για μικρές οθόνες) ... */
 
-  /* Styles for projects gallery on small screens */
+ #projects {
+    /* Αφαιρέστε το αριστερό και δεξιό padding */
+    padding-left: 0;
+    padding-right: 0;
+    /* Αν θέλετε, μπορείτε να ορίσετε συνολικό padding π.χ. */
+    /* padding: 40px 0; */
+  }
+
+
   .project-gallery {
     display: flex;
-    flex-direction: column; /* Στοίβαγμα εικόνων κάθετα */
-    gap: 15px; /* Προσθήκη χώρου μεταξύ των εικόνων */
-        padding: 0 1px; /* Αυτό προσθέτει 10px padding αριστερά και δεξιά μέσα στο gallery */
-
+    flex-direction: column; /* Stack items vertically */
+    gap: 15px; /* Add space between images */
+    /* Αφήνοντας το padding: 0 10px εδώ θα έχετε 10px κενό από τις άκρες */
+    padding: 0 10px;
+    /* Αν θέλετε οι εικόνες να φτάνουν ακριβώς στην άκρη της οθόνης (χωρίς κενό), βάλτε padding: 0; */
+    /* padding: 0; */
+     max-width: 100%; /* Προσθέστε αυτό για σιγουριά, αν και συνήθως δεν χρειάζεται */
   }
 
   .project-gallery img {
-    width: 100%; /* Εικόνες σε όλο το πλάτος του container */
-    height: auto; /* Διατήρηση αναλογίας εικόνας */
-    display: block; /* Εξασφάλιση ότι η εικόνα είναι block element */
+    width: 100%; /* Make images take full width */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Ensure block display */
   }
 }
 
