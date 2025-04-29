@@ -38,3 +38,30 @@ document.getElementById('contact-form').addEventListener('submit', function(e) {
         });
     });
 });
+document.addEventListener('DOMContentLoaded', function () {
+    if (window.innerWidth <= 768) {
+        const dropdownLinks = document.querySelectorAll('.dropdown-toggle');
+        dropdownLinks.forEach(link => {
+            let tapped = false;
+
+            link.addEventListener('click', function (e) {
+                const parent = link.parentElement;
+                const dropdown = parent.querySelector('.dropdown-content');
+
+                if (!tapped) {
+                    e.preventDefault();
+                    // Κλείσε όλα τα άλλα dropdowns
+                    document.querySelectorAll('.dropdown-content').forEach(el => {
+                        if (el !== dropdown) el.style.display = 'none';
+                    });
+                    dropdown.style.display = 'block';
+                    tapped = true;
+
+                    // Επαναφορά μετά από λίγο
+                    setTimeout(() => tapped = false, 1500);
+                }
+                // Αν ξαναπατηθεί σύντομα, ακολούθησε το href
+            });
+        });
+    }
+});
