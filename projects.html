@@ -10,20 +10,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
     <style>
  /* Media query για οθόνες laptop και desktop */
-@media (min-width: 992px) {
+/* Media query για οθόνες laptop και desktop - Βάλτε το ΣΤΟ ΤΕΛΟΣ του CSS σας */
+
+@media (min-width: 992px) { /* Μπορείτε να αλλάξετε το 992px αν θέλετε */
+
   .carousel-container {
-    /* Μειώστε λίγο το ύψος σε vh αν το 90vh κόβει πολύ σε ορισμένα laptop */
-    /* Δοκιμάστε τι φαίνεται καλύτερο στις οθόνες που βλέπετε το πρόβλημα */
-    height: 90vh !important; /* <-- Δοκιμάστε αυτό ή κάποια άλλη τιμή (π.χ. 75vh, 85vh) */
+
+    /* Αναιρεί το προηγούμενο ύψος και το κάνει 100% του ύψους της οθόνης */
+
+    height: 90vh !important; /* Χρησιμοποιούμε !important για να είμαστε σίγουροι ότι θα υπερισχύσει */
+
+
 
     /* Αν χρειαστεί να αφαιρέσετε ύψος header, χρησιμοποιήστε: */
-    /* height: calc(100vh - ΥΨΟΣ_HEADER_ΣΕ_PIXELS) !important; */
+
+    /* height: calc(100vh - ΥΨΟΣ_HEADER_ΣΕ_PIXELS); */
+
+    /* !important; */
+
   }
 
+
+
   .carousel-img {
-    /* Η εικόνα πρέπει να γεμίζει πάντα το 100% του container της */
-    height: 100% !important;
+
+    /* Αναιρεί το προηγούμενο ύψος και το κάνει 100% του ύψους του container */
+
+    height: 100% !important; /* Χρησιμοποιούμε !important για να είμαστε σίγουροι ότι θα υπερισχύσει */
+
   }
+
 }
 
 /* Media query για tablets (και ενδεχομένως ορισμένα μικρά laptop) */
