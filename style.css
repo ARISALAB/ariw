@@ -301,7 +301,28 @@ footer {
   display: inline-block;
   padding-bottom: 5px;
 }
+.dropdown-content.show {
+    display: block;
+}
 
+/* Προαιρετικό: Απόκρυψη του dropdown-content από προεπιλογή και εμφάνιση μόνο με hover σε desktop */
+@media (min-width: 768px) { /* Ορίστε ένα breakpoint για desktop */
+    .dropdown-content {
+         display: none;
+    }
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+     .dropdown-content.show { /* Βεβαιωθείτε ότι η κλάση show λειτουργεί και σε desktop αν την χρειάζεστε για άλλους λόγους */
+        display: block;
+    }
+}
+
+@media (max-width: 767px) { /* Styles για mobile */
+     .dropdown-content {
+         display: none; /* Απόκρυψη από προεπιλογή σε mobile */
+     }
+}
  /* CSS για το dropdown */
  .dropdown {
             position: relative;
