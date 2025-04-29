@@ -1,108 +1,59 @@
-document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    document.getElementById('message').textContent = "Το μήνυμά σας εστάλη επιτυχώς!";
-    this.reset();
-  });
-  function toggleMenu() {
-    const nav = document.getElementById("main-nav");
-    nav.style.display = nav.style.display === "flex" ? "none" : "flex";
-  }
-  document.addEventListener('DOMContentLoaded', function() {
-    const dropdowns = document.querySelectorAll('.dropdown');
-
-    dropdowns.forEach(dropdown => {
-        const dropdownToggle = dropdown.querySelector('a'); // Ο σύνδεσμος που ενεργοποιεί το dropdown
-        const dropdownContent = dropdown.querySelector('.dropdown-content');
-
-        dropdownToggle.addEventListener('click', function(event) {
-            // Ελέγξτε αν η οθόνη είναι mobile (μπορείτε να χρησιμοποιήσετε το ίδιο breakpoint με το CSS)
-            if (window.innerWidth < 768) { // Χρησιμοποιήστε το ίδιο breakpoint
-                event.preventDefault(); // Αποτροπή της προεπιλεγμένης ενέργειας του συνδέσμου (πλοήγηση)
-                dropdownContent.classList.toggle('show');
-
-                // Προαιρετικό: Κλείσιμο άλλων ανοιχτών dropdowns
-                dropdowns.forEach(otherDropdown => {
-                    if (otherDropdown !== dropdown) {
-                        otherDropdown.querySelector('.dropdown-content').classList.remove('show');
-                    }
-                });
-            }
-            // Σε desktop, αφήστε το default behavior (hover ή click για πλοήγηση αν δεν υπάρχει hover)
-        });
-
-         // Προαιρετικό: Κλείσιμο dropdown όταν κάνετε κλικ οπουδήποτε αλλού στην οθόνη
-        document.addEventListener('click', function(event) {
-            if (!dropdown.contains(event.target)) {
-                dropdownContent.classList.remove('show');
-            }
-        });
-    });
-});
 document.addEventListener('DOMContentLoaded', function () {
-    if (window.innerWidth <= 768) {
-        const dropdownLinks = document.querySelectorAll('.dropdown-toggle');
-        dropdownLinks.forEach(link => {
-            let tapped = false;
-
-            link.addEventListener('click', function (e) {
-                const parent = link.parentElement;
-                const dropdown = parent.querySelector('.dropdown-content');
-
-                if (!tapped) {
-                    e.preventDefault();
-                    // Κλείσε όλα τα άλλα dropdowns
-                    document.querySelectorAll('.dropdown-content').forEach(el => {
-                        if (el !== dropdown) el.style.display = 'none';
-                    });
-                    dropdown.style.display = 'block';
-                    tapped = true;
-
-                    // Επαναφορά μετά από λίγο
-                    setTimeout(() => tapped = false, 1500);
-                }
-                // Αν ξαναπατηθεί σύντομα, ακολούθησε το href
-            });
+    // ✅ Μήνυμα επιτυχούς αποστολής φόρμας
+    const form = document.getElementById('contact-form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('message').textContent = "Το μήνυμά σας εστάλη επιτυχώς!";
+            this.reset();
         });
     }
-});
-document.addEventListener('DOMContentLoaded', function () {
-    const isMobile = window.innerWidth <= 768; // προσαρμόζεται αν χρειάζεται
 
+    // ✅ Toggle για mobile menu
+    window.toggleMenu = function() {
+        const nav = document.getElementById("main-nav");
+        nav.style.display = nav.style.display === "flex" ? "none" : "flex";
+    }
+
+    // ✅ Mobile dropdown συμπεριφορά (διπλό tap για πλοήγηση)
+    const isMobile = window.innerWidth <= 768;
     if (isMobile) {
-        const dropdownLinks = document.querySelectorAll('.dropdown-toggle');
+        const dropdowns = document.querySelectorAll('.dropdown');
 
-        dropdownLinks.forEach(link => {
-            let firstTap = false;
+        dropdowns.forEach(dropdown => {
+            const link = dropdown.querySelector('.dropdown-toggle');
+            const content = dropdown.querySelector('.dropdown-content');
+            let tapped = false;
 
-            link.addEventListener('click', function (e) {
-                const dropdown = this.parentElement.querySelector('.dropdown-content');
-
-                if (!firstTap) {
+            link.addEventListener('click', function(e) {
+                if (!tapped) {
                     e.preventDefault();
-                    // Κλείσε άλλα dropdown
+
+                    // Κλείσε άλλα dropdowns
                     document.querySelectorAll('.dropdown-content').forEach(menu => {
-                        if (menu !== dropdown) menu.style.display = 'none';
+                        if (menu !== content) {
+                            menu.style.display = 'none';
+                        }
                     });
 
-                    dropdown.style.display = 'block';
-                    firstTap = true;
+                    content.style.display = 'block';
+                    tapped = true;
 
-                    // Επαναφορά tap μετά από λίγο (ώστε να μπορεί να ξαναγίνει 2ο tap)
-                    setTimeout(() => { firstTap = false }, 1500);
+                    // Reset tap state μετά από λίγο
+                    setTimeout(() => tapped = false, 1500);
                 } else {
-                    // 2ο tap -> ακολούθησε το href
+                    // 2ο tap => κανονική πλοήγηση
                     window.location.href = this.getAttribute('href');
                 }
             });
-        });
 
-        // Αν πατηθεί αλλού, κλείσε dropdowns
-        document.addEventListener('click', function (e) {
-            if (!e.target.closest('.dropdown')) {
-                document.querySelectorAll('.dropdown-content').forEach(menu => {
-                    menu.style.display = 'none';
-                });
-            }
+            // Κλείσιμο dropdown αν κάνεις κλικ έξω
+            document.addEventListener('click', function(e) {
+                if (!dropdown.contains(e.target)) {
+                    content.style.display = 'none';
+                }
+            });
         });
     }
 });
+
