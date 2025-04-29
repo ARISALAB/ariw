@@ -12,7 +12,23 @@
 
   <style>
 
+@media (max-width: 768px) {
+  /* ... (υπάρχοντες κανόνες για μικρές οθόνες) ... */
 
+  /* Styles for projects gallery on small screens */
+  .project-gallery {
+    display: flex;
+    flex-direction: column; /* Στοίβαγμα εικόνων κάθετα */
+    gap: 15px; /* Προσθήκη χώρου μεταξύ των εικόνων */
+    padding: 0 10px; /* Προαιρετικό: λίγο οριζόντιο padding */
+  }
+
+  .project-gallery img {
+    width: 100%; /* Εικόνες σε όλο το πλάτος του container */
+    height: auto; /* Διατήρηση αναλογίας εικόνας */
+    display: block; /* Εξασφάλιση ότι η εικόνα είναι block element */
+  }
+}
 
 h3 {
   font-size: 2em;
