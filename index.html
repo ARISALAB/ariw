@@ -29,7 +29,7 @@
   /* Calculate the base width: (Container width - total_gap_space) / number_of_items */
   /* Total gap space for 3 items is 2 * gap = 2 * 10px = 20px */
   /* Width per item: (100% - 20px) / 3 = calc(33.333...% - 6.666...px) */
-  flex-basis: calc(100% / 3 - 20px / 3); /* More precise calculation for base size */
+flex-basis: calc((100% - 20px) / 3);
   flex-grow: 1; /* Allow items to grow slightly to fill space evenly */
   flex-shrink: 0; /* Prevent items from shrinking below the base size on larger screens */
 
