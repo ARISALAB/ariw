@@ -376,16 +376,7 @@ footer {
     display: block;
   }
 
-  .project-gallery {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .project-gallery img {
-    width: 100%;
-    height: auto;
-  }
+ 
 
   .content-wrapper {
     padding: 10px;
