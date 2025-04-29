@@ -140,19 +140,47 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>Α.Μ.Κ.Ε. ΔΙΕΘΝΗΣ ΔΡΑΣΗ - INTERACTION</h1>
-    <p>Σύγχρονη Πολιτιστική Παρουσία με Παγκόσμια Προοπτική</p>
-    <nav>
-      <ul>
-        <li><a href="#">ΑΡΧΙΚΗ</a></li>
-        <li><a href="#">ΣΧΕΤΙΚΑ</a></li>
-        <li><a href="#">ΔΡΑΣΕΙΣ</a></li>
-        <li><a href="#">ΣΥΜΜΕΤΟΧΗ</a></li>
-        <li><a href="#">ΕΠΙΚΟΙΝΩΝΙΑ</a></li>
-      </ul>
+
+<header>
+    <div class="header-container">
+        <a href="index.html">
+            <img src="big.png" alt="Λογότυπο" class="logo">
+        </a>
+        <div class="title-container">
+            <h1>
+                <span class="title-main">Α.Μ.Κ.Ε. ΔΙΕΘΝΗΣ ΔΡΑΣΗ</span>
+                <span class="dash"> - </span>
+                <span class="title-sub">INTERACTION</span>
+            </h1>
+            <p>Σύγχρονη Πολιτιστική Παρουσία με Παγκόσμια Προοπτική</p>
+        </div>
+    </div>
+
+    <nav id="main-nav">
+        <ul>
+            <li><a href="index.html">ΑΡΧΙΚΗ</a></li>
+            <li><a href="about.html">ΣΧΕΤΙΚΑ</a></li>
+            <li class="dropdown">
+                <a href="projects.html">ΔΡΑΣΕΙΣ</a>
+                <div class="dropdown-content">
+                    <a href="culture_page.html">Πολιτισμός</a>
+                    <a href="tourism_page.html">Τουρισμός</a>
+                    <a href="environment_page.html">Περιβάλλον</a>
+                    <a href="education_page.html">Εκπαίδευση</a>
+                    <a href="technology_page.html">Τεχνολογία</a>
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="connect.html">ΣΥΜΜΕΤΟΧΗ</a>
+                <div class="dropdown-content">
+                    <a href="volunteer.html">Γίνε Εθελοντής</a>
+                    <a href="member.html">Γίνε Μέλος</a>
+                </div>
+            </li>
+            <li><a href="contact.html">ΕΠΙΚΟΙΝΩΝΙΑ</a></li>
+        </ul>
     </nav>
-  </header>
+</header>
   <div class="carousel-container">
     <div class="carousel-track">
       <img src="1.jpg" alt="Καρουζέλ 1">
