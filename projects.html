@@ -9,31 +9,36 @@
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
     <style>
-        /* Προσθήκη/Τροποποίηση CSS εδώ για το καρουζέλ και τα κουμπιά */
-/* Media query για οθόνες laptop και desktop */
-@media (min-width: 992px) { /* Μπορείτε να προσαρμόσετε το 992px αν θέλετε άλλο breakpoint */
+  /* Media query για οθόνες laptop και desktop - Βάλτε το ΣΤΟ ΤΕΛΟΣ του CSS σας */
+@media (min-width: 992px) { /* Μπορείτε να αλλάξετε το 992px αν θέλετε */
   .carousel-container {
-    /* Ορίζουμε το ύψος του container να είναι 100% του ύψους του viewport */
-    /* Αυτό θα το κάνει να πιάνει όλο το κάθετο χώρο της οθόνης */
-    height: 100vh;
+    /* Αναιρεί το προηγούμενο ύψος και το κάνει 100% του ύψους της οθόνης */
+    height: 100vh !important; /* Χρησιμοποιούμε !important για να είμαστε σίγουροι ότι θα υπερισχύσει */
 
-    /* Σημείωση: Αν έχετε ένα σταθερό header πάνω-πάνω με συγκεκριμένο ύψος (π.χ. 80px)
-       και θέλετε το carousel να ξεκινάει κάτω από αυτό και να γεμίζει τον
-       υπόλοιπο χώρο, μπορείτε να χρησιμοποιήσετε την calc() συνάρτηση:
-       height: calc(100vh - 80px);
-       Αν το ύψος του header αλλάζει, αυτό γίνεται πιο περίπλοκο.
-       Το 100vh είναι η πιο απλή προσέγγιση για "μέγιστο ύψος".
-    */
+    /* Αν χρειαστεί να αφαιρέσετε ύψος header, χρησιμοποιήστε: */
+    /* height: calc(100vh - ΥΨΟΣ_HEADER_ΣΕ_PIXELS); */
+    /* !important; */
   }
 
   .carousel-img {
-    /* Οι εικόνες να γεμίζουν το 100% του ύψους του γονικού τους container */
-    /* Το width: 100% και το object-fit: cover φροντίζουν να καλύψουν όλη την περιοχή
-       χωρίς παραμόρφωση, κόβοντας ό,τι περισσεύει. */
-    height: 100%;
+    /* Αναιρεί το προηγούμενο ύψος και το κάνει 100% του ύψους του container */
+    height: 100% !important; /* Χρησιμοποιούμε !important για να είμαστε σίγουροι ότι θα υπερισχύσει */
   }
 }
 
+/* Προαιρετικό Media query για tablets - Επίσης ΣΤΟ ΤΕΛΟΣ του CSS σας */
+@media (min-width: 768px) and (max-width: 991px) {
+    .carousel-container {
+        height: 70vh !important; /* Ενδεικτικό ύψος για tablet */
+        /* Ή ένα σταθερό: height: 500px !important; */
+    }
+    .carousel-img {
+        height: 100% !important;
+    }
+}
+
+/* Βεβαιωθείτε ότι ΔΕΝ υπάρχουν άλλοι κανόνες για .carousel-container ή .carousel-img
+   που έρχονται μετά από αυτό το Media Query και μπορεί να το αναιρούν. */
 /* Προαιρετικά: Media query για οθόνες tablet (μεταξύ 768px και 991px) */
 /* Αν θέλετε να δώσετε ένα διαφορετικό, ενδιάμεσο ύψος για τα tablet */
 @media (min-width: 768px) and (max-width: 991px) {
